@@ -22,6 +22,9 @@
       "Leaf Variegation"
     ],
     "overlapWarning": "This dataset's provenance relative to the cotton model's (unnamed) training data is unknown. Treat these numbers as a sanity check, not as field performance.",
+    "split": "train",
+    "heldOut": false,
+    "splitNote": "This is the source dataset's only split: its raw config has no test or validation split. It is not a held-out test set. The model's own training data is unpublished, so overlap cannot be excluded.",
     "classes": {
       "bacterial-blight": { "modelClass": "bacterial blight", "sourceClass": "Bacterial Blight" },
       "curl-virus": { "modelClass": "curl virus", "sourceClass": "Curl Virus" },
@@ -55,6 +58,9 @@
     "labelSource": "ClassLabel feature names read from the parquet file's HuggingFace metadata",
     "classNames": ["Bacterial_blight", "Frogeye", "Healthy", "Soyabean_rust"],
     "overlapWarning": "The soybean model card states its own held-out photos came from its training datasets. This dataset is a separate small public set, but its provenance relative to LeafNet is not documented, so overlap cannot be excluded.",
+    "split": "test",
+    "heldOut": true,
+    "splitNote": "The source dataset's test split, held out from that dataset's train/validation splits. Overlap with the model's own training data (LeafNet plus the authors' field photos) is undocumented and cannot be excluded.",
     "classes": {
       "frogeye": { "modelClass": "Frogeye Leaf Spot", "sourceClass": "Frogeye" },
       "healthy": { "modelClass": "Healthy", "sourceClass": "Healthy" },

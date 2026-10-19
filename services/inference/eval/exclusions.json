@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "note": "Declared exclusions are evaluated and content-hashed like every other image, then omitted from the measured metrics only. They remain in the JSON report and manifest with their reason. No image is deleted, relabelled, or altered.",
+  "crops": {
+    "cotton": [
+      {
+        "path": "curl-virus/031.jpg",
+        "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+        "sourceLabels": ["Curl Virus", "Healthy Leaf"],
+        "duplicateOf": "healthy-leaf/067.jpg",
+        "reason": "Exact byte-identical duplicate of healthy-leaf/067.jpg carrying the conflicting Curl Virus label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report.",
+        "approved": "2026-10-19"
+      },
+      {
+        "path": "healthy-leaf/067.jpg",
+        "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+        "sourceLabels": ["Curl Virus", "Healthy Leaf"],
+        "duplicateOf": "curl-virus/031.jpg",
+        "reason": "Exact byte-identical duplicate of curl-virus/031.jpg carrying the conflicting Healthy Leaf label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report.",
+        "approved": "2026-10-19"
+      }
+    ],
+    "soybean": []
+  }
+}

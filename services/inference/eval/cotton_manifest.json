@@ -1,0 +1,4981 @@
+{
+  "manifestVersion": 2,
+  "evaluationScript": "services/inference/eval/evaluate.py",
+  "evaluationScriptVersion": "1.2.0",
+  "evaluationSchemaVersion": 3,
+  "generatedAt": "2026-10-19T17:53:14+00:00",
+  "crop": "cotton",
+  "dataset": {
+    "name": "Project-AgML/cotton_leaf_disease_classification_bangladesh_2 (config raw, split train)",
+    "url": "https://huggingface.co/datasets/Project-AgML/cotton_leaf_disease_classification_bangladesh_2",
+    "license": "CC-BY-4.0",
+    "split": "train",
+    "heldOutFromSourceTrain": false,
+    "splitNote": "This is the source dataset's only split: its raw config has no test or validation split. It is not a held-out test set. The model's own training data is unpublished, so overlap cannot be excluded.",
+    "labelSource": "ClassLabel feature names read from the parquet file's HuggingFace metadata",
+    "overlapWarning": "This dataset's provenance relative to the cotton model's (unnamed) training data is unknown. Treat these numbers as a sanity check, not as field performance."
+  },
+  "model": {
+    "modelId": "FarmGuard/cotton-densenet121",
+    "revision": "22f8684282bd81ae4d9803b43c71e6f09a7bb7fc",
+    "weightsFile": "cotton_densenet121/best_densenet.pth",
+    "checkpointSha256": "dfb01012a64d9c9b3fd13b1b2483851de8ebd1b981329a19c244ed116a7071aa",
+    "architecture": "DenseNet-121 (torchvision), ImageNet-pretrained backbone, 4-class head",
+    "library": "torchvision"
+  },
+  "preprocessing": {
+    "pipeline": "resize-256-center-crop-224",
+    "description": "Resize(shorter side 256, bilinear) -> CenterCrop(224) -> ToTensor -> Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225])",
+    "inputSize": 224
+  },
+  "thresholds": {
+    "minConfidence": 0.6,
+    "minMargin": 0.2
+  },
+  "counts": {
+    "images": 490,
+    "scoredImages": 488,
+    "excludedFromMetrics": 2,
+    "supportedImages": 208,
+    "unsupportedImages": 280,
+    "measuredClasses": 3,
+    "unmeasuredClasses": [
+      "fussarium wilt"
+    ]
+  },
+  "exclusions": {
+    "source": "services/inference/eval/exclusions.json",
+    "version": 1,
+    "note": "Declared exclusions are evaluated and content-hashed like every other image, then omitted from the measured metrics only. They remain in the JSON report and manifest with their reason. No image is deleted, relabelled, or altered.",
+    "applied": [
+      {
+        "path": "curl-virus/031.jpg",
+        "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+        "reason": "Exact byte-identical duplicate of healthy-leaf/067.jpg carrying the conflicting Curl Virus label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report.",
+        "approved": "2026-10-19",
+        "duplicateOf": "healthy-leaf/067.jpg",
+        "sourceLabels": [
+          "Curl Virus",
+          "Healthy Leaf"
+        ]
+      },
+      {
+        "path": "healthy-leaf/067.jpg",
+        "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+        "reason": "Exact byte-identical duplicate of curl-virus/031.jpg carrying the conflicting Healthy Leaf label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report.",
+        "approved": "2026-10-19",
+        "duplicateOf": "curl-virus/031.jpg",
+        "sourceLabels": [
+          "Curl Virus",
+          "Healthy Leaf"
+        ]
+      }
+    ],
+    "declaredButNotEvaluated": [],
+    "evaluatedImages": 490,
+    "scoredImages": 488,
+    "excludedImages": 2
+  },
+  "images": [
+    {
+      "path": "bacterial-blight/000.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "4a92a7c8675d614d8e5982417dfa3ee07a028af1577b4e63832cab948418fb87",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/001.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "2f4eada539fd75c99993ddded855358b21ed13c80023da41f3b8f0abde7769c8",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/002.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "f4db1d2c1376f87ea90ee2c0084a30acab1bd989cd691fe8cfbe6ac2ef697664",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/003.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "39f63147b5a66cc8a1d11911592102dd3025912f22a7f4a3ec3319685e4d083f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/004.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "c7b5ce6adbe08fe664f3b1bc26cc6f6c5e5bbabe99a3b1b946041445224cee6c",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/005.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "37f7255aaa9617d84dc2819303c28993affeb331ed76ba47dc38e55be078529f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/006.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "3348419fd4ebb34bfb3d778080917a7fca156be7c52b7f2bdb423a66b831d1f3",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/007.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "f337c061a9bf5cafa8d334ddda494243e5650f2574e72a0c4fa524ae8cb324e2",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/008.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "b1aa4ca145b89793a5ac899de0fd466865321ad5e47b9aee373b5d372ddda4df",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/009.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "c8c93f09a66728740f85bdc05e23066e5b634d23be92b162ad927a1226873eb2",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/010.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "102ccc96def1e49ae09ff80966f9d71b375142fd8c3df64db014b5ec0098d7f1",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/011.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "ae75acad8a682cf51d55e73a2892e201bcdf11ccb90db3148735834830c4ec4a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/012.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "b5b1fb0c039fff3303bf1804580edb4c95c551a64de5e51c74a19d4704c5cfb0",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/013.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "6f8b6fe503f29540cb7fc6b87db190c4394b0c2182893546c0be49d8e073acb5",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/014.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "adff50322caedc561eca4933d7a1ed64ef4b51585d46574edf3e8cab963174af",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/015.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "0a34d0906e91f516b8aa833b90ba7db26c93257bf5c8dd9b9848c63fa64b80e5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/016.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "a328a73865b45d678f3ef4184d098be7c8e335df9b5839485297d75f8d8decd7",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/017.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "7884d5fb07b11700b8f5ae4098bb619a99f6541e767dddb8fa24f6787b495b14",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/018.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "6aec25071fb099809bd16f733dbbd40265fb5cfeb783b6ce283778fd9e39b428",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/019.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "a5fa72fa1dedb961e8a1b8cfed0f2de1599c1ad6f5543272b8f6d6f69ffc649a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/020.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "4780edcd35733bdab8f9c852e7d5505b24ae0bfa1b1b5e60af27f97f36bd21bd",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/021.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "4806fc8421c207c62a26a01b748f6394db47476814685da33bc6ad73ac5181db",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/022.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "8f7a5e0af208942a5038006b28d941f5991c9b51a4521b762f4abfc7cb442154",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/023.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "414b0625f78319110ff73f193c54bbb3a4b201a8262c2b2c2482cd60d6b7d5a6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/024.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "d52680c81e7d9f25147f938fa2cdc72feb57d9687095e37c286e6dd6d2d9f75e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/025.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "c578ccb1642427913c94fdf2affcf0e048b6f47019a3be305124c0a7d976a336",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/026.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "a46533dae0859ae98c1bb267e6d8cc0177ffd80046c7796c02e43e1aa28da7ec",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/027.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "77b42bed256e8f8f2c13dc57edae9f0349158e625bee9bdbec1af823e1257787",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/028.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "3169410e6697910d78ea25a715dc6ea209eb275485afe2f8e4934e3399df9e5d",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/029.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "649fc9550386ed1d7caa6efaa3804ba4e966707106cfd6a4b17168fb9f76e6c6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/030.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "9e78e60bf0bcd747634e354205acd105c6453a3370983cd151e9f6827a01f4e2",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/031.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "5fa82e38817d9f8220bc64ceeb8bcd34126fa61ca5c9193b24ba626288bc56d4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/032.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "87da3cac14ee75bb054ce29b08fa47fc387c0aa6175b18da96de8b13b8d98af2",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/033.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "6f12cd90e8f82ff73844f8ae2d8cd47de8bf8fcc444b4291bdafd78b1aa3f82b",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/034.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "faa52429dde85eb7c9b934beb6b9d0ec2ab74e0cca2e37294f5bb8d66ac28500",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/035.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "df67418d26ba1b53574770fb78f72e4545dc6960be4dc657c9422fbba1519fec",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/036.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "1646323a6fe90e858528cd348d0695d1114ebcc0434c6fc6eafb8577c8341dd2",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/037.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "89d1918f6cd9fea7b651c3b9ff2778161f9b04dade80a91c79cb1d8910051d88",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/038.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "17e5dd356f12a08cca037f7b0ac006e7c08a136f0c74826b887ea6cde42d0e7d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/039.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "096a49ff78baa696e367d020b2089530589731697fea4a3b4162627e8a013a01",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/040.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "9e0955884c3bf9754fef692eb97f5cae9ae838363ba118ce364349811efa13cb",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/041.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "aa590e9b1be03d488775cc2abf53d9f96fdd178153c0f249fb9130835b21b9e8",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/042.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "ac5ad8180b82c778f9590ff7b2fbe009964335fe9edda11725f9d9bdb16d691c",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/043.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "5587c405bdbb6aac74180ee4017009fac3ee9e46811250c8b87ffbe924531b3f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/044.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "66b66719364bb58d46e8deedcbb54156abdfffe3fdfc2e3657ccb6f2b16ff1b1",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/045.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "afdf69f65843ca5ce217d36fca5e9fb8597893a479880046528d0976d24d065d",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/046.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "39e830a50fa09e923d817b07c5ee127010c0910b1fcdb00fb3fb94f79cbc060d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/047.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "d75c3690fae98e8642ad664cbbc9b75ce2de0b12ab6a37f1eadf696e6b4fdd09",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/048.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "5b40ff0aa57636aa00d4c52f7210d466446cf98ac2452af03b7ac3d204ccc4c0",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/049.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "691344b43d376eda946ca96a2eab4e6befe761f7c6f09d1fdca161d4693690e7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/050.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "0e5ea8eb6a991c8df2e4235caa42309f1e41dee0449f459c53ff32589ca88a7b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/051.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "cc29ec92635ddc2b92b2b89d3311d3cf4023bd3dece0172fceec3715e926e709",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/052.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "a1b3a68c994692a4042f507472942f73733d2c14ccc2a6f9bc8f339105ec217f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/053.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "77dd8fe1b67a39d37919e92f7e88aa45191328a351171ea3366531f9da912ed9",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/054.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "1b29e677706b7fc96239b2ba24b617176d848d003a6ee65a7f7e798652ddb482",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/055.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "0c3082538607334b434e81cd737a4e6a3a97e3d971c1eaed351076eae29c5557",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/056.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "fbdf120b3267700c4e6f98e7f81b2111bdca5b4685090f04511c59d18428cd47",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/057.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "4736ec4686e208eb5694f1a0d85d159be62124c54b123a058c63a8923885ae5e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/058.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "025a93cb81e9fb943bd58436d9851c4417a07410f9fa687b2a25657794a76a98",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/059.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "a31c00adadbfbd37f7a0f71b252e9b5284969ff8f11a985c9c9fc09267720a58",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/060.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "ff96d632f009375e06d9782fb199a47eedaece59f079efe7dae696bb7490a32f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/061.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "47fdb8122d5f8abca3ba86ca27877838138f7c8df49bac69394106e6954fbb26",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/062.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "841b34365e45bde914342c78c611cab079dda3c49f73591951d4cc064c7d363d",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/063.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "83d68d27c290384b18935431a12088781f40605904bcdd8d55002ffcb1783ae1",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/064.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "45438751a8eaf386e0f736a7230e0ef3cb4c24f8ebde208f9bc644dd48cef532",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/065.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "349adc41c7dc5dcb1c05d1594a1089a4be9b634534867d11c146b46d7ef8177c",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/066.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "773a968f3c06b2a9962bbcaef421657867e5f604f3b8a13df85f79c7b2acf2ee",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/067.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "3904a12b51652cadf200ea6bf0bd88c2f4020c36855429c89bf37d0fc3f44e53",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/068.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "b1a396ce4ba8bda2403e6c18cc9bde8430b0c680917069225bb8e920065b041f",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/069.jpg",
+      "sourceLabel": "Bacterial Blight",
+      "expectedModelClass": "bacterial blight",
+      "sha256": "93ad967349864f81633f974ff92bee824724db8f524eb50b3a842c66527b1296",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/000.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "9621e14ec36d6d9f6d8d42fddd35d5db11de087026d9a28e02c2ad6aac35ea56",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/001.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "ed33d9d726151350405699848740f2a4214f743b2f8e30b05b37ac116083941b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/002.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "7614356eb1b911ccb7201a5da32a75ce20ac20c145180f48bc524af5714c1bae",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/003.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "e8f58618e3258848f68e353c6df3b70b088041962080b126ccb9a3646c0cf023",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/004.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "cdb9761bc486f83ee2c7eb30521004ea1cf32e626bb5c2f281939a3836ad81b7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/005.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "34a42e9930e51984be9c29f9bdd4f1d4d2868f91cdf4e10f20ecaca5a23e1a07",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/006.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "e3607a4aa0bfcb9df20b3b4e22eaa176094fdce1fccdf8bd6e4c3f32aa3517c3",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/007.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "005451e2cd66ff20c9c1ede021741a24cab4279e9c83cf123c4521fefe1f11a2",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/008.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c3a4f9732ef319c280c4284a321db8e64bcb3cab342d8489939e33ab31a49043",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/009.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "2f044cf36b04852b7dc551e2138cf34bbde28900b01b41716c26ba366155d52a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/010.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "0e0eff8506624f164d25f2ee5eaefc3b74eb0ea4abd792a6eb2b39911b43b484",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/011.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "814831b396ca344b5154153bfe5e690af6d85b1952bad93504ee531fd0758d96",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/012.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "40514a05496abe6c5e9ebabe84d5b5a4454745120331ae60badac644be6fbf29",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/013.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "7fe4697ad72a625ad38d4c5d03aab75978c2b53fad96eb0243be17ddd6031300",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/014.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "b0a4e26ae332c819454b2ccd8cc1da9d6cc060382c01283294384ecf90d8acdf",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/015.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "ae98fb7b95b41a86f65ae33618474f8cfa5d58c12862a6a8373f5d720be2cff4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/016.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "6787620a705a0414b7892e88a76ad081163d8c4658493c38872e1ffd00bf9b97",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/017.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "913d6052792773b53cece578ab146e9ca88cbd8182267cd31e9a5dc915961990",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/018.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "9476f02252e7e2b88b2b1b8c0d82eb4dd957841dac1033602429cf324f53e3f4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/019.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "ded870fb5f90198993239ad83bcac3c066b8ff391d4447a2901e0fa13ae5ed1f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/020.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "644222a557e0ffafff445650049bfdae7dfa3ddc6541250a8b552a5e8ffe03f5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/021.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "e4765f1794108cf377ff6488270986b7d2821e0b2feaec879652a2849641c6c6",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/022.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "be947c5308df2614ef5e8b6ee53919cb5a280a553a6ee54506fb3e4843c4f09e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/023.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "4d621dea0b3deb18fdb38afff8597dff4269481c270eee02bf5c55fa36a587f1",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/024.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "fdeb14ed129ae88b9a05bc029e344462683a168e506bfc0e0332e6b1a37ec25f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/025.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "a2517939c631520a036c7e1fa7eca84ff8f257ed7d26502ad86115d4d324eca3",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/026.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c63d8b277db492ad04bebdb7662394c8c1482ccc993fcd5fe9de481de624eb43",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/027.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "88aae52178ff86db429b7305cd6bbfc8eb0622ef409f7d275c00bfbeec1bd9d5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/028.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "59df4ca2c6dd7c63c91738173b2f40866f336f63c089efbf75ade9beeeb1eab9",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/029.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c43805eace09ffcfc9ae4fe6ef5758d9dae600097354f5c839049b1cf47fca54",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/030.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "81624b2e9cff8cb07b40673abdd09f996afa4c19f4c811d81282850d0527b3a1",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/031.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": true,
+      "exclusionReason": "Exact byte-identical duplicate of healthy-leaf/067.jpg carrying the conflicting Curl Virus label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report."
+    },
+    {
+      "path": "curl-virus/032.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "7fc0de98104c3ce68c47568949c483a9c7fe8d4ac1aca03e21b691a6a9f54421",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/033.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "06c63e6163d9b24fd6fb2404bee8b98f453643e5248a289285f05c2b8f1653e7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/034.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "eb491e34945bf91d227b19ee88e4081e939fe74a4026fee623e7224331d4b3f5",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/035.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "8cc8f362ead0d76760390441c5c9d7788ba2b5956238a95a7277e6f2b8eb5353",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/036.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "b46669e18b6bd47f3cc5e3a6d5086d67ac479b27c6db0d1a21f6ff028ead0e1f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/037.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c781cff7bf482b5e70bb5d5acd9e203a0fe0585b4b8c214520c341fee12d10ec",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/038.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "39aa75aa2d1b2cb2a662a0a8724e3c8bc4b76d06a811c8e1ac3124d51b1a6960",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/039.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c0a6f8d6ff7139a7dc90032fd80b82e202260c55d2a4377e3e98ab65b18ae0c5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/040.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "f4d4582724d629af665c8d1b0e0556e51488f1f2495e25269d47dd9d3ca47e58",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/041.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "280b111da3dc13366f524c63c69158b61492a61fc7d869b7a25ede6bccb694e6",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/042.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "e7aa3d10870d204bcf458434fff7ba2a9c21ba039d21621076eea7db6a159f99",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/043.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "0f1c29482f24ccf10c59d8a534ece94d83176cbaa8f75e9e4e015d36d82aaeb8",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/044.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "37499257475cab27cba7447d36a950b1310ee2cabcf626f16a39614abf440713",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/045.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "34f9ae56fc85025cef321ea310b21b63cff329960c0ad62bf8d7d665066a912c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/046.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "4acfdffda6cfdbe257cf08255f9e4fa2058a64f7b856561688db277b868da2b9",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/047.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "615d955fdf1629cf62d7a19705b845b51f0038b2bffcf54a22550cfab6d6a01e",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/048.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "b0537e895be4f1889f87399397c71d927337b6de15c5175d7501540cea0cd6aa",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/049.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "bf354fed3c8be277bc358e2e146fc078dfa6e8af3a6d85f4b7458e7dd3fd3792",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/050.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "a7ec3516e032260d3921a1738402cc5263074fb750ebe401ee83b6d2a6f26ec4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/051.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "eb0be8d2bbfdfa83d15e9b2197c6bcc0bf342939950daf9afeb69c46990e1616",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/052.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "ef0eeb290a1be7faa2f6dc9d07f79a7c02ef999ec57f6ea6fef40ab5bcd7397b",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/053.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "b67e1be06db3554f54fa134fe3ab7799b69dfa04b14c4695e9bc89622cda165b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/054.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "75453f4c87062e82fc43eb95a12ad1e10fceb85dc293def1b838de1a763d1633",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/055.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "8f2a2e42dc15483ce74db2350f0dc22acf43f3525d5e6bce62841013adf30319",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/056.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "ebca14d65883199f143805ca9e198fe340afcd2fe0bad83a2a33a4a052182fb5",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/057.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c36267aad73682b57d4b8e9ec0070b748aabfa5e98548ec525fb0ec9de483017",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/058.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "69f7105d82c14da0deab7b9d148159aec57e31d5b00ad95358fcd866fe3ae274",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/059.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "181524df6fca623f42ef78f0dc49c9c19dd357d8dff48b717f2be4b3f7045779",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/060.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "16f8ac9dc47bbc6a1f8aed621b08dd20133a5d48cb4a58255face8a25d23e8f6",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/061.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "aa7506219a7b41f7fe1230ecd94b762930ecb69952cf5e58edadb7474594b0ae",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/062.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "2c691dc852685ad413f4c62690592d1f687ded0695df605d5fa98814c1cdabd2",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/063.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "c0a697e7adb4b2084b71936a80f80097f699f6767290b06fda19fe7dc1d3847e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/064.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "caebc780d44d29d24b4837e3b086cadea936fab7a3929557d24cafbcaa5c71a8",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/065.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "158b1762e45672566565a0a7721e960ccddf1dc57592ec44b0d28c2448390749",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/066.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "55ac428fc911c918663afdf46a940546740859fabb5e155aee1f81b2c6a37dbd",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/067.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "a829b55430e2a7b48e7ccce9a38d21ab8da9e7161087aba44c1079865c72b60a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/068.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "b58c906e97c3315c15235dfd312c76aefe16091778d82231c96b35a857256323",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "curl-virus/069.jpg",
+      "sourceLabel": "Curl Virus",
+      "expectedModelClass": "curl virus",
+      "sha256": "795e8957de04d2af69a39042bd1521b81fed5b654a94b0fdfc1971ea5b4a995d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/000.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "639c68bbf3f57cbfbdecc2f97ad5c70f31ef346d02bf3d6a8d8a4146df41ae8b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/001.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "12c7df9857bd59ea9036a2b528744a259254fda42edee6ca4ab7bd3e193a7091",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/002.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "9d8fb2cd1dc41194901c97fc5dbdfce16be5b7ea668778c308bd4dc3545614d1",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/003.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "201ada376d127463a05aa675f136315300bcfcfb10e6b3fb2405ac173a47fd40",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/004.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "dd92bee3c6c036409f9a115a8a2788ae045a695b9b1aafab0e1aa77c2535e710",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/005.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "31de1626af11036b29fe56282ab916d578af615d7a65e003d07554e04385aee7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/006.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "baec58138fe3761626d985eb4f4d60df7c75b5490af988f766906f44cdbe0131",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/007.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "ec45cadc1843b2c1320fb71c9f36e5cce357a8b20b3ebb73e1b2f56f9a36124f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/008.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "aa8d897f7177c1e8b3cf21bf5ae034ee6cbe1cff321ca428cf7741ad1c3e8bcc",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/009.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "c87e71ce948d34b736108068c994948e6a4e58e2508bb6e829832c089aeb5fc9",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/010.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "8bc607c3213168ec68b4d364da28ed2562bd5d1207376abcb5e86de3580c25bc",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/011.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "360f066e69455172db20cf766812a40c0eef2c077240c2a45f4dfc90bc6b03bc",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/012.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "ad2e2a1e1be634266bf8551aa3bba1ea1748220146e3abe59119273be4b062c5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/013.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "31536c3670c609790c31d53b23826df065a0aeab420fe70a8c965f3818768a46",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/014.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "e2ae945a65832988ca4282766b980f429e82c34dfc8d6d1a7205db9bab7c7375",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/015.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "148f12c077cd6ec4ee403a06a983d1b089d3480576ece8d26aa35d140a7a4044",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/016.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "37c7621fcbc42642d6f0cbb5f06bee0cf10197118b18426c42704f22f072bdf5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/017.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "23137da797666ec0cf5f4cd969b19261f3aff5f0e275f4b61856037e3974082d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/018.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "0eb5b41ae2375a486db290f3f8300d4288110a56cfec92586212639cb5fdae46",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/019.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "4de7abd4298128121d69645b5c908e0ca751fe52a5dc2f32a45b86efa6fe10ef",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/020.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "96b50d94e56dff8a29ba5b4c378902b17f8d6d4385fbfe3d4d4e99495b8aaf8a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/021.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "74152abb27417cb4b78be479f72c820af63da2420afb8f5ad45ac0f21efd4330",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/022.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "4a3b93fc5b0b955fffae712e9ae7c9b024f63b6c94b65f5da76e472af1b28994",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/023.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "d10186c95b2a15cce3fc2880928aa0fbe44292fc5f9cb24360af6258e5710d46",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/024.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "e8a740da3e9a4635c2f7662e1d5a7a0c1b7e2a9f345e31eaf7c56c5e0627c448",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/025.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "e08f5c30b5bf17b4ebba29d3282a2b5533c824a66a5a3b73f3c8aa110cdf2eee",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/026.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "3fcbd4f9e31bc2658c5dc92d7e84aa0a2a5f8375bcf31cc37fb58b155cd5130a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/027.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "4d9f5af78c6ed220c76f68c362a267480264d51d88609c1a869d3a599410e6e7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/028.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "ba17ff5e36065914b4cf43006f81f5f536153ebc414530692318c4b83b602b28",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/029.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "44a753fc127d8c241afdb4879e3555a6db606bc91c7b500ebadb36fece00f18d",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/030.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "04d9f1299609b2aed5e886831fa846e53b2441f805efd3733db31c7e5730e709",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/031.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "9f0a4c2415f689bce0455495d72a8f69b00db2f7e187a3edf5889f0c54a8ff89",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/032.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "32094a45335d4aa793c0254ebed2aec07e8ecb9f5959cb45dbbe9435646c8e2f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/033.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "cb30cdfb56641192924e8562de1e351b0c79bcfbbd39e069338cb7daf63e620c",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/034.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "dc29c05f6e832f8ed1b6c14981dcf42a231e0cc4a9e6aa1dd6e35081ab9bcdb0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/035.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "f3c59f3df4afbbd742a9a67f60c9ad5483e8e9817ddf8d2cee59ef4dfdb629e1",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/036.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "dd9d8ee59eb45354dcae4bbad0083378ead07a74f8e23ad734447171d24afa2e",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/037.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "fa6d36fa3bd46dbf641911e31093945266a0dbb34184a2448d06374975280875",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/038.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "f64186b0c20d244b063ab1e5ec78ef8d0614b4e20bf33a2598e19223f93871d0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/039.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "28e2713d10b6465610614857f60074258b2964d62504238cd80c8943e57f19e2",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/040.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "d4029ca5b12e06c7b55960fb6b7948b386c161c3c43d10e5a24cd4d9df4d2444",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/041.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "a0a57668ab8bc85fe31a7e850362d01317fa80fee89cf99b2b98497b1ab6b184",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/042.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "af3fc6f7e912a3ee45a8f53917ea7f01912b2493c69af9c5ddeab3d6d956718d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/043.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "73423abdf22db2a74da7341f769ad93c9eab5f8d9d0164eded1aaa307e896136",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/044.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "3259b97627c7ed2b3699b68c5512568760213f6f19c120d9d708f573a6538fec",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/045.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "a46e5efd95779c5f07f276289c57a1691fb00806449e3834a6cb1b08881247a4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/046.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "3552eeb2667bea8aa4dc069453d677e464be0899273fa13e406963561c558ed7",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/047.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "998e625ef6ac84fd6fd04c3ba4da0e785869722a66edc5a3622272f24e0abf19",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/048.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "47578bf0fd18264538d5ab7feb170538507ba6d483cc5e574709d00cc01f57e4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/049.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "90745181ad4e9ab6b555a34848f94a48c1d821f14157d9fe906cdf5a24aac959",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/050.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "b8c4e67362f0dbc2ec83e94e2a1a7f1d60c7a828c44fb3e759d76bb0c02889b7",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/051.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "e7732faac34b708a106cfb9974a0249e694c717a105c389c879a1a3a1e3b1990",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/052.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "603ee4f429638b295d1020eb8b8a021bd50bd3ff5d3e30c3144bbee5784ec33f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/053.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "54f8a945e49c70a3c31e87c23862513f7bb7a78445e44cc3e65746d5642c773b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/054.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "4d5f1677d6585aa241b8c0d6325cbd0d877247fe8c079be7723d1f9803e0c6ad",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/055.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "7c77725efd79b68ea34572d88c240b5d00deff07c3ddcc4879d605acd3f4affb",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/056.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "ac9133c004ce2266d3adb04bafce6f652dffb1bccffa7070c02c4c4e6108bf5b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/057.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "7e6136817bef77a2d993c05a5f2bcae3ad900e9510002da568cc453b858d0565",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/058.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "98fdfc25914e3aae94fdd3ca533ea8345c5b6375a70db4498886134413e64f9d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/059.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "c079e7902ccc168598a4926ad0e8e907ea478b7b6d60e20edd4ede3ad3b30ba4",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/060.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "859e7f43d94eefbc9120bebeac5b13b89488a7aac94ebe8a742c2d1a0d6e039f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/061.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "89761041277b5f3fc1fcfce1e79877c98cf9d6df2efbdaaa2e63adc08874a21f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/062.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "3fb944a54f49a4e6ee2955ec1462a42e1bf7f85a6b907d16a84aa298c3bb02ea",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/063.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "0232a1118cf0de16d1fb077da93509629c8759b378e4963189e6ae88c92186b3",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/064.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "1d74da47322cb21f872e80d55b3b64fbc694330170f8bbb8104a1e4a559195b0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/065.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "b14a4b67648f692596a1cc8001b4e8f65017bee94dc0dc7de049cc928c966783",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/066.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "04a75f592aabe04ab37b2c5f0b38b5ceb8645a807c6d9b6cf85fbd04a93273ff",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/067.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "f4fc192312022687aba68a82ba5546c0e6362c4865d1e256c35eadb15e347f65",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": true,
+      "exclusionReason": "Exact byte-identical duplicate of curl-virus/031.jpg carrying the conflicting Healthy Leaf label. The correct label cannot be recovered without human review, so both copies are excluded from measured metrics (approved 2026-10-19). The image is retained on disk and in the report."
+    },
+    {
+      "path": "healthy-leaf/068.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "290667adfba32c14202f45e1a26eb9ed8e5dc1eef2cac987bf0c1a5e35e5e3dc",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy-leaf/069.jpg",
+      "sourceLabel": "Healthy Leaf",
+      "expectedModelClass": "healthy",
+      "sha256": "16e32ed4fbed3454fe30ec0beb37b9c8b43d13b042896653544deac5f0175ff9",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/000.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "09d7a515f5fa96f2709236894d0ae4adf88542d096485a188bdc24a1102addf9",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/001.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "252465e138c5da6dc693cea7a09d75b70491c8d3b0ffe7e0b23c8e3eeaba30c2",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/002.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "2274cc51e5ef7c48bb67e767dfbe5ecdb63e624a2320b3ccb4755aef7d9bd69f",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/003.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "14e30e3b7e5b7f660e0c1529f9b2ffa69335e84b3694c4747eda2951271da121",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/004.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "fdeabc0a6eed6c8f943cec344c5d3794c82b4baf9663331eb0b83dffb548ce72",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/005.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "6b4b8844f0a3f668acd1cab723c620baf43f3e78e4dc2170481328eb081bad4c",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/006.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "4bb4bdcf8499a02357aae346906d0def9cbcbaa62570e8dfd1721a22b8803a19",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/007.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "07ea027902008de13bede211ae43af59c43675e9831537d5c94f1c64b2fea5f1",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/008.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "bf39be26ccdcbaa48c421651720dbeac08bbf20e68044292a6722c7b6688f156",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/009.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "3b3c536bb76a60b5211cdb1257d8ec5e640f5ddb36c1a7502d7d40e898bada2b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/010.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "63a04c5761f1be46def5328c6f120b7728c1cfdd026c91064423e1bfd5ea1aee",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/011.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "4790d06899459742b6e9a5d7b0a2438f063a09c8c1f15896339155279c6ff5da",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/012.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "9082718e9b9833df57ed24eae267819b55404806d9152e8673a080dea762f9d0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/013.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "aca9d81902b09bb7c8e29dbaceafc7008cca283cb20d78a3f7a9d46729d79899",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/014.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "8f725c62e292c7dd5e085fa2b167d71a8f129e8f4b7220c5a4cf2268c996892a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/015.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "909ef300fc230a212d449f84027ea20f4bb39e12e4b4cbf3dec967b77c2af750",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/016.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "4698a9ee1a721ddb647c785dd9c249a5cd01a14561984cc7705e4363ae5a86c4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/017.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "63ce6c4efe8d690b9dd2891e7e3adf6528be731ac685be8384e89f91100a60d8",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/018.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "df5371b0f5deb73f60397634b64a1830c0c424456ac57e89792edf7091c18c13",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/019.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "afebdbebf56ef9081b89dec0745df43284fe71245c3f38468f658853d9f89a12",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/020.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "5e0c7ee275f4b6a06bf281efaef3860ac58349f749e0d4b68efa7a551f82c2e8",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/021.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "6f9777c14b30ac1451e0957b265fd4f0c3fbc697c5f4fc8a3e5bfbf02e9a534a",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/022.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "a272c3e99d073860cb04e69b3fc7233d4c7ec8262588c5948ea53c27586f45b1",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/023.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "f8c31f5b1737fe878f7308ba58088560c8882dd43370190914da89ba5adc2fa2",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/024.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "aa1c2bcbcaf505d7ab4b810bc1241e528f9a99d2bb74ff70c51e559f156c4d36",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/025.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "dd230733caf7521cbf4fd5f845c8e53f93ec6add030ef9e0291b20aa5aeebabd",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/026.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "354702e0ead8879391c928fec597c379a1c3f0799ee374cd5dbaf744695c68f6",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/027.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "70185f7c07d0530fd0f9204e4622eb7b773d259d1079232c0ef64b110903a5d4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/028.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "0b56ae839fa35a471bab35a75dccb077f6a308de92f9a4861ccc46ec6119b21c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/029.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "b41da4e839bba9c1ab57f51478ac8f175e9b29dc6377678e3295020408c0e865",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/030.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "c5c7411cbaf62cfb9a651cc661e6982dd5ed109605a4d7d87ea3b232a13a8106",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/031.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "85a5af88769d6beb30d299ce55dceb6db3ffdac31f61a341058a62285daad209",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/032.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "3983eac9f4198437627a932be4f7ec6337119c36eb082ab2e3b6f1d770480d3c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/033.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "b13f6f221a8be2cafae564ea22925190c8db657019d5e78c02aada2061983f15",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/034.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "83981c4989a8724b0c2cc15baae2d0c408d1b3a9f2c4ce0b27f5f34464560598",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/035.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "521d4de30934720e070867b6171343119a8425e96a2614871300967983b0a281",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/036.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "15f8edb2f1b539ab1b36eedad05a5b9d09ba3192c92f50a6be54ab8db080f99f",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/037.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "f2325707d60d756ded6e6599c15c513972e1c019614583b7f7417fcf1dbb7036",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/038.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "b5e4ef787f747395b4be2002adb5480d77c6eface41a789d52c1a10b284ab417",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/039.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "9471b7b5ce325020e6f2fe4c9f612b3b5177dfc21b079869084337abbe1edfd8",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/040.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "61378f2041b98d1792ec9da183d0695177cfffef964208bc2aaa15db8d83b9ff",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/041.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "f8d3a142d617a2ca9b64a2a98447621ee862d67545390ad7b0bf67d13e021cd2",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/042.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "6c14b74691ff2967af66cd429bcc32a8c6179b55e689d9b282eb30142d9cc40e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/043.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "7026266e42c5ea88b0107d65ae0a4efa38f9477d16603d2048b3818f20f74f7e",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/044.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "1f4d576d481918efdf2b04415b7ff9da48d63e868ae02994d067a6d9ce3eb7d4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/045.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "dade120eb590ba5bb63c08042544fa28829085e11aac4974c32d5c14037469a0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/046.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "d6cb7897e021885a8148696dc93b15b9fae7e933c66eaa2a4f80f25934139b19",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/047.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "75a40be804af6f6a1dfc4f31eb69ab6fe3ab093e96a11d8683302850c10bc257",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/048.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "fafcacffb4b30dc9cc626909274a323daa95409ae85ac5200a5340b1e3266cfb",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/049.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "cb49b334b7da3c07a2d8ca7e7c6b3c4afdcf1a10b419bf18ea2914c7f642d464",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/050.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "7a6f672c80174ce82c43f3fedb5f646c25132c9c780e171252ad71f55b050cb6",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/051.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "bb6e27e2fc35327c75828b49ed407256ffeb97a00dff0df643c26acb066e86c6",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/052.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "ceff17e43faef991ef6ceda9955b9de9968ae2022cc1391d49ca4e4111c330c0",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/053.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "b3b97d21033ff1b1c0693dd23cef96df7ef413d3f03e52be9d89dc694a704425",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/054.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "409193f9962759a74e366df352e9b10ce16ba87012a48aad67b500d692079468",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/055.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "2d3988846f80819779007144a867b58311036195664091a4db64a2bbda936ba5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/056.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "0587c802b58b5424100bfee425da3b17b811b29c511ac3e854338f836207dba4",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/057.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "f1deca8fc4a150c014a4b82124a8d2d58fad8d84dfad65a46454ee94a1aab496",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/058.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "bc1c02c4719391719539d34d7597224b0835013ca4dbc4db46c6eab737d5f6a5",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/059.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "7ef9a665ef89da2801138e7cca7bedbf5c5355735509d062287381dc3463fbd8",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/060.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "ab3506ade2750f3da01f43f8f042f47a850b5b5aadfebd9ef6fb9ce63250a6b9",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/061.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "07bac7117905a22dfa0bed05dd958b6898a1b7288a15f542987551207212a573",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/062.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "b6dffea99dee622ebdd2be0c5d1369c080893d7254ddabf7e7957fcb2806344e",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/063.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "f0adb6ab8491210fa645a94a1c04f326c84c8c7c14fd586eaa7d27e01f628e6c",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/064.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "5505a637763cc480c3e45e3c1d0a6c7f3df216bf3058542606b36ea7ad3dc53c",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/065.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "552de977d8849d56c2857c0ba04da456670e3c8b706b312b30ddf8867aee34b0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/066.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "3cf9638f22bfa0ba37807ee7489af51be4a04fd9fe44d8fa767c3f737076a334",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/067.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "a8d9c1fcad5e8d65cb9a9dea63c45151355c1400312d60b134b71026090a502c",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/068.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "bbaafeeceb06e19b032436315fb28d1a340a45e74878d34d718cb439d06e5b52",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "herbicide-growth-damage/069.jpg",
+      "sourceLabel": "Herbicide Growth Damage",
+      "expectedModelClass": null,
+      "sha256": "9b7466082d1f56c652b1b77d2ac543c480116da3c8195efbe665cfeeede3d8ec",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/000.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "8163bf94a8d3b7cfa2ae526ad74f3fee01ede58b57b93d2d16ec1ddc9aa155b6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/001.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "94dfa08161565c7c4b7f97aecedebf381dc213b17b5709562d8e6ae6e01b43bd",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/002.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a7830d92e66c8c481f9d6e3ef0abca5f8e11f33ccf71012a05d8aa6e4e37fbd4",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/003.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "12f52f798b5b60e88605e5a3221d9da6cafe8d3b5748c37083fc89463a45f20a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/004.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "9e77f32a889ac20d6f40c951b3918b979c2752e9abf2b55034426a7a1f4374db",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/005.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "f627aa16ef2605d180d03e215579fcdb10621d7cb98faa906c6ca51bcdbf06a5",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/006.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "c463bc58272716ff592f996df442449c97f157814252a06ce1f567db08ac9307",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/007.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e43b568f1423569a71ade8cfc76df201fed61a8e57bba34d9e27ba2ba3d16be5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/008.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "02d20cd47b373b0515bd421ad160c5e9a509bd522e0a1e2d71e970c47781a210",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/009.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "87d0d8a5242713eac7bfaadb1df464fb9c6d0d05737db604e5510b14adf54ba0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/010.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a24a3a76fb439e95afd244dd634d5d4c1620e76e225c336e2ed3dfe44a56836b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/011.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "8d157b470b84da83c0abf89f98f4f7550e84c576419fdb42c92d0284ed18dc76",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/012.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "11d985e0bfee6c67409b5ee5d1b95d60bb5a13f85fc646b0f19ecc0f3d85db18",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/013.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "fc17bacee1f1d8decf35603dd8f373f43d6af6c18d861eecc5efaddb0df1a28a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/014.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a25e13df50c0af0436039a8c6caaac10f047948ff18c7a9c02af9b3ad786a350",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/015.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "f7a3c09d4bfd55506e28743dcc9c58c1cac393de6fcf2012fa508aa4c40e946a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/016.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a14690a52132349ca6c9dd547d66a0171edea8e62ae71d7a2f2d1786db4f6243",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/017.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "40065a6b53b0fe994b53cc67c61aff184eb72ca580aea59641f92eedaab6eee5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/018.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "0c3106138e552cf361ad9721e0856df9d98a5278c820f087ffb7b498fc83b970",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/019.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "264bb8701c72ed1a3263e618d5b5290ffce141effa8dc99195c408e12aa8bd83",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/020.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "1a699dbe567a338d384ca71999b40be68f1529b98206a5e712d6b5409dd8fb77",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/021.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "536ac46321b526009511a99fcc1a55323e65881d91c33e5b3263ffe5037344b7",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/022.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "ed4212b492a51967d9dc85666fb2fd2ce6c05e436c0e16627cfca85e9aa517fd",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/023.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e5ac2d8e1c442be218fcf8f2e189cc5f35fe92f3f9a766ef4005253c97f2996a",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/024.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "8b24ed56e30c7c6222b667ddbaac04798482e1dc93aadca67bf9445d4e0be4d9",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/025.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "2569e750717f11614e33f66ba9a1e6ab57f3fa5a36b9ae7fe632d570d7ba5e59",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/026.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "655078bc5c83244165b623f66477c2b5bc8733bef94baea2f6efa5c49a7bd661",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/027.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e64067ca638bed565c2a93008fba5abcc741ad6bd8a504118e28317b7ba2843a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/028.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a0e159e6e6c2007a897a1d89478e2f52ab7aa15f4645d00923e933f2f7543076",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/029.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "583f8854c5e89438b28a6cb34f825a5db92de4b8936c824cb4f38544c005cf0c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/030.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "2087f4e320d2ca30c5f989d2187e92fe01257bc6928ae84ea33ee6d253ce19d2",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/031.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "aec8eac2a92bbcfc6dd8dc4cba40d7f3929b368089cfb86ef933f98ce1c87228",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/032.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "a72fffbd1871e8befad13f8d4e5a3f00d0b1ea6f1306040899b6c1dd64d328ca",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/033.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e0238486be0203077e32374374c64e62422f53f953c6ba6bf62e010917be76d6",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/034.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e48d1009f6043b67e025fa5d282a26fb8ff6bf5b1a022c28665a84e802748f3b",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/035.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "e8f1846a1f6e1015db0178c97ad3e54cb6901800fc9bbce6cc33d3bddd4e948e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/036.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "f27b78b61b4cd56faea40abb1e218f3f9332d66e5518896d4bb63c2056afec25",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/037.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "b003b3c447847b2610c0aa96fc29aaa1bef1544e52cd28bb1bfe7d7309775b9b",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/038.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "058c31bc593fe4487b0c162c593743f01316dc97fca9eb344dc9e355afecfe2d",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/039.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "3487af54c6a2b8458186b59fe209630a527ae5dc297bf5020e48db8cd64d28f5",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/040.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "1a721e59bf03db892cc9ef11809be942debb645480c94f65b4c342f4416fb0fc",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/041.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "0884e5dac8201c33e59713fa2fb31895d90b56d977c8797fd407bc03deb4854c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/042.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "1c8a6bef2277080705cf0892517b400dc0a03bedf5cacb00f95ea49fa684b4ba",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/043.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "fb000354f3333844c99639bf5dec7571234e11f46b6efadcbabb354d874f4521",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/044.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "38274db95454a8f569e03ef6358948095a8b7d18cf68b9e31611068a8d3c12a1",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/045.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "3d93b6418937de9542f814a895a5690d0f6e951baadf1ebe7287456b97c0b761",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/046.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "c45a8dd2e66537fe737977e38fb85410fdac2ddec0a5f1c43040d1dcd56993c1",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/047.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "9d655d971f2eded56816494395a0c504b69233b1caf2d8f1babffa722f04cff7",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/048.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "dfba9decd1343a80f2ed09fbe6d7a6570e0864c078da069c9194e1badf03bb3e",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/049.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "74a1a4cd92b25aefe5fecb0e9c87b9fd88c2bbbd2d0e9a0cbb0e6443b34a5e30",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/050.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "bb58846654f449b7353fdc9a7912bc6cb0a5a87c7b8ce1e151c634dd59be342c",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/051.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "25b342aba4aa21e05410a0aa2d42b2a95626732395e7d4355cb0721affa0886f",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/052.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "cedcbf236e2db9bd3e8810b3c26d764d47d7c90a7f0e2b20648c5eb92714c2e5",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/053.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "c6cbad4ff44f058368129fa6a2cc60e4e64998ac20d6dd1693f54913d51372bf",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/054.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "f3de94c03d5ef60e3f78d394f2a6ec8c8b8f1847255b10adceeda0eb3f533ba3",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/055.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "9ce9ee371157e62f562b7c4e9ffd0fdc678b28816a4535b539820973bbf784d7",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/056.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "738044018b041f479ba52daaf7a6f373b8affe684bd63f383a468fbf787509a9",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/057.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "95a4e8325b03b12c1efc8a8e4b0a2bab3257da4968347dfd00d64a500184c62a",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/058.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "71577f889a06fed979c1282eb3e38fe1d443caebc058a9145acd88ec1eac1bec",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/059.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "00a7bee5259df981858dfb84bfcc539989945aa1958726240a12f11f05670021",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/060.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "698c6ec2727a2fbc0af7d47e61f1ead55ef236073610a2328b4c338f530bb9ab",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/061.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "1e459cea5c9de9e68cd79ef1fef009d6f283ac272a93b68baeed0efb893d347a",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/062.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "c102e651f5d37cf28e7246b8177985a4d307e1e152555dab8fad801b3c9535fd",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/063.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "ccd2efdaffeffdab0da670fea34e9ca840e2e51889644c533e14d5ebb76b2a98",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/064.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "b386bddcba79b9b033c6be1efe1bbf2d17eeff726bed1fef3755ae3dd6cc3b38",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/065.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "6fa969e6e8c9db26679936f870f2851de7a7bc49c01535622e7562fb99b5fe2f",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/066.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "ba38f13e1c7150f3f457cbeff82e6dd398fe2259b935e2579b76534b4602c41b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/067.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "9fa93d3d3fa9527ad384f45d163d55b1f4325cd8cd28f3918dfc8d794ee3e5b1",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/068.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "d99ab20fc3ed818a9bc5bc5d90af86d83bf740b9009a161a324299dce797da5b",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-hopper-jassids/069.jpg",
+      "sourceLabel": "Leaf Hopper Jassids",
+      "expectedModelClass": null,
+      "sha256": "45909e93da40d5c7f6b85881920d633ef451dca153d70c64334d4e02e6f1eae0",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/000.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "21fe10b3482c6edb8c526f20eca4198be5d8a2561f46f2ab0553abad09cdbb9a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/001.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "688b639fcaf9ae7f1e84c9a3d8416200f2e0f71d872b7a4bb27906073c50d502",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/002.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e430edfd01f269b3872f3ecce3262f7d687bd7a90de351b7362005d50f38166b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/003.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "58ce8f968d1810b97bfe9d69539bf939565f98d033d780aa99123c76a7fe7dcf",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/004.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e2916ecd717f7f57daeb46a85655a8d0c305f2b777d26c9ee499ec6ba69f5d35",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/005.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "2169f64c15ec216f5cfcdba6dd301d434f1d59986fd4a19e92cecbecda9e49b2",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/006.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "ba88378aa83d5aa4d8b08c5ec0d2496c3eff0f7ed6fe7e3f85c73c604dac9c31",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/007.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "b3a188137541d9331e7cf54e2df3fb22eae6b8361eb35ab7b3fefea58babe9c7",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/008.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "5fe3ffd974c32b8c7088780a1e26e024472da8dfd46c1de6b7916d89bacd35f0",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/009.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "b1eedfa19aabf3d178feba2fd7ecd514f1738fdbb84aadda878b9e0859747446",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/010.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "af322cc0d4dff9f0d2a337a3f5c7e6e1021ab23518d831a5af49d119ff314b04",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/011.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "4d271270dce775789170e4ca37bc197140f85c0b62c6419fae44cbb4ad55b0fb",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/012.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "58cbcdc6d7944e2bd2428609dbedd72f83e68094d4403a1af5c4df3460c61a07",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/013.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "a97b8da653dd2696425bfd955adbafcc094a7cc0295f2b17b10dd4080da5694d",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/014.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "edfc746d9ae7edac778377e009058a8c913d2a80cbddf592a79c621ce15523d3",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/015.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "22563bcddd1011a09b8951b09a5e5053aefdd4587bd14e7f8e6d9741bcdafb45",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/016.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "a484c686c9be38ca224254367298f91a92a4dd53545c1a1abc65d3a11d3cccfe",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/017.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "07c3d33b39faae8bf3a0d243916faa89601d0145a61350596c5cc83e12ead31c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/018.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "5dfcadae4a2942b7b3d9f322134238574b46acd94679acbecaae7e4b27d69cf5",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/019.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "d9afc3143460a37847e2d007f15959bc7c5b34a52a09f828e71fa3c69b60a059",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/020.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "870074c46bb60d131b2f10dc085c1357ec336c519e2e60a374ba740a01cdce3f",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/021.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "663ec6037151125dfed38a26b22301a5358f4e602f212d677a74184cafa45158",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/022.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "433a7564caa5828115f818b2991664265c6735e7dfcb345d5fdf551522cd7a44",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/023.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "c8ae5887f55dc4b715a7fc1e10526fcbf5c1221aea1463be71cc119a4b5d204a",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/024.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e199f61fb738112ad15f55fbc30c2f179e50605d334a1c0867028d297bb2fa04",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/025.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "14a709130a402182af1b40a6156cc48aa517a4f417af3a753fe4fc93478a1e2e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/026.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "6464f4fa8c0c0c1f9d5640e8b01e1cee3cbc1983112ea307e16fd61c307c48c6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/027.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "5586fc69bf447d1e3d9ff5dd3589476b43dafb7fab04d4a517e751bc9a90a80b",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/028.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "20bf067c7ed48f35471c05f2920eb43440dfebc1a314da9b843e40547a97616d",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/029.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "4c201c78c0ca6c2517a554990f90bebcb57e80c2e0184750683e320cf12188da",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/030.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "1bda164f3dcf8b52583ec909aafc4f7c2eae7c84c1d9266cd5f44e7b0cc235ce",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/031.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "6698f7742195dc61dadd94789ffc5783f94729d7307fba36387e81760b6053dd",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/032.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "0c371b1f800ec1ccf1fd74c16296cb685e9c26e8612469a7d6e60ba841f0d0f0",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/033.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "391f58f4a613439c904ffb5d6e492dcf7ae104f902725c45d88f3a3cb1f16744",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/034.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "7b5ae43d00aaa005dcea53dd27187f7246ebe80003a4bfb37ede4a0df47c44ab",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/035.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "cfeb592a55bc4de2e585f1b7797c47b010dc6d0569fb5829381c40351e5242c1",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/036.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "64b90d2f04430846d671f55148e8952b6c214f0fcc9e1ce40bc5f9a88c0e39d2",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/037.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "4d656b426979a18b85fa0876ab041dc8dacf6b4d140fe8eec3b35043f6997989",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/038.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "77c64dbf201a2222da84aba17bf0f262b4f182d2e8d54d7914661ecc88d45f26",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/039.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "251615906c021aa801f285130aa8533f7b6bc18c66ca3b3abe35461d813014f6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/040.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "1212de6fb89092508e04ee3a760732f77b8178ae5fd65b657c5c2465abf385cb",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/041.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e584a9175d93a35e0f97e05f3babcd612432feef817580583c6bd4d0f7c75a4a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/042.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "a63d443209460fb8529058fe07856ff5369a82d7942da71e66d5481e4f5e7b41",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/043.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "d484b528e812a35300173ad7a1f6796d1c1292a7b0c96c32639af2d8631b740b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/044.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "5b633509f9fd8907358d41c364e3e6c976f726659de36c0d4591fd35ff0a7efb",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/045.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "00468cdbd4f937e5fc45e3199d352626fefbcb639832cacd29ab3c3bc160ee41",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/046.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "7b1c41c9e0c325573997502f95bbfd1d83563c1615437b230173949c0a35ad2b",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/047.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "8984dcbdf622cb2d7a772d00894ad54c91b4dc10e0fb593db144b1fb97511244",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/048.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e7c672dd68a4c098a6d6ad3e0a206f3f0ff9ec3cdb372c1cb10fdbbb1aa2e496",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/049.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "698f48909227d63525af42f914333e4bb60a105034fef9a302f1e98b3ca4b051",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/050.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "b6f3fc10379ae49aebc07dc65d22e87fe1beefbbcda2924366242dbf94020126",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/051.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "85af5b82c35b0eadf4f986ea9c86f2698f212d58aa91e84f89b1aee0d4773834",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/052.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "1f2328a9564a926dcb7223058c24385d313543b4c89e9ab0b52df2d21a9373ee",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/053.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "4db15087bf7ac5262196a0deb7c0b2d109cc26bc6a55a845a2977c08adfc568b",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/054.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "644ba09bcb2e5ae646814efd11135ca70bf7324c81a8a95f579b934c29b22512",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/055.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "70e5d33d073b7cffdf7c35f3fa6d7d7dd4d22a53b50bfb9f50ffb68d4a3cc518",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/056.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "3580b828daaafd9d35f800d0e88bd94d04e383facb4699903952b15eabc5e239",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/057.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "6f6b7f63933f1fcf6af69fa5b55fc2a9a967a49a0a4a2ccbefffafe66ad3fd37",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/058.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "3b13510fe9b156e6dc1b7e39f93901b997b1fb0b51099ed4377beaef2b925233",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/059.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "90c2209fc58ba585d4798e52997b718ab582c78642b67b84c30a832a6173aecd",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/060.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "55c6d6802e9400313959cf39d438cf62fa228b06d3f0320e34f2cbc0beae2b86",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/061.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "16be95e5e5bd5a28c16fedc7253cf5461fe2a4641574242e59ead1ebed30160f",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/062.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "4108a5b5f5841ca6c24e34f9c54c3671cd38d457ed33e6e522d5873003c943a1",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/063.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "a9dbae39073c1a80c01aeb6bb656cf388e4f37f97b9567706ace0e68d8932e8a",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/064.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "907e094864174305a62b802571c41a80a892e47e4d7ecd0a5d291c70d2215370",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/065.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "31e84833b8882eb170df23ed735ebbce177bf76f727c2a3185ba0daf7008575d",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/066.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "11f07099616fc2050be664a74882389393f411991eec3a308260875c30efb660",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/067.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "e3ee15c1252c6ecf19c2233156a9ab7e7ffcd209ef97f7a945bbb792544e88a4",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/068.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "ab2cd49013f2066a9881eae45a8317e1affe48345fd4e6becfe67eb9740c8553",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-redding/069.jpg",
+      "sourceLabel": "Leaf Redding",
+      "expectedModelClass": null,
+      "sha256": "966edf1b8ed0f6c777e75d3ebd79ea644418f7fd8c6f079dc01a35908a53dbb4",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/000.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "bb6cfabee0d2181d2ee54b69e6eefe75f9722eade972a22ad9c3ca8f104b9f82",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/001.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "8e37cdb4294c6edde7b982ef8fda2660ce27f438066ea23b1ced05697ddbb4a6",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/002.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "c78fa1bab1bae71cb37aa21a6701204c27983dde1bd1d25fdfd0afc6bb0fce59",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/003.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "b7f18902578b82efe676c875fe9b09997886085d2357c4ea1a92c28bd6e20782",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/004.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "0011a1dc0a231af8077e73b28333c3c1103fb87312c804effe2ff4ec80c8aff1",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/005.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "a92676f973ae4133234ec9655490d748424ba252ba3516373a29bcea1c87974f",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/006.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "c9e0b2d946a5e3f6ff80bd2ff0772555766dee68d37472c073481ca68db57963",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/007.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "182f9ed1670ef41284a5519783febcfcf6a6c0eaafb40c1c2ef890961d5d7fa2",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/008.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "e05219eb4b75ad9a288dd268971db5567daf24f8f1e75b2ab96b1ba71cfbb330",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/009.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "9a51afeee910cfa97786878cc9036798299a0cf8a149aa5717cebb93e24c4d44",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/010.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "2e4259c9089484506db99eb2487d6cbda85d03d1e57415f2d64f3a512add7354",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/011.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "0095bc0fcabcaf2dd4a8c0c04210aba451d6e89a2b392dd65761b3747500a367",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/012.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "629ebf8f67d90a7338fa245b92fe6f5cb4fd12ff6a74c01f8b42fd4ebe079445",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/013.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "21319a7aeaa4c475c8c1ba83b8dc820e5bce28674551cde989b105992df7992a",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/014.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "c6f885a1180ab8bd6ea622e17f0939fa8e694a58eb71dc09402eb1d49f784620",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/015.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "75eeaa8b6f0502514d10c0772c0f27ad1c62924bea7671be33d322831544fda7",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/016.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "d80d5ab5cb30ee7363c225835e9cd2fec1d1349f831a6940f78347083abb4dfe",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/017.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "4770b356ef4e49e1971053a06e5315eaed6c07a0ff2e4d6e174a332f1ad0847f",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/018.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "620fda70949f05359c89b6b768c3b7eb7e9597c0b9812a11375533f713d6d015",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/019.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "695e721d2af8e85d2d1e8a39aa7cfd60a36587d869ae07d4c92f5853bbd3756c",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/020.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "7399d7db3d1e2eaaddd9cef981c78a734a2dc6b943fc57e20c584ceafbc983f2",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/021.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "0a19be27df27b14be409d5fac4bc1aca0642153d0014b987b164382aa6efe2d1",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/022.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "cea9ca01fc4344f9bf33ceae3fe578f11b2ff7068a01d367dc5f7104f4e4b6e0",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/023.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "9d83bac32c7688d64cec4d432806e032c670179a23e63f4eeb8021157562c210",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/024.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "cdecccf2e12f571154f27d2b477f7e6992e2dfd4aee502f529eea1f3b4bd8dcd",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/025.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "1d007f8f1ca4f281f0469dfb20c9a3d157574b70540c6e10684c66d830d59b57",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/026.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "2fa281492e938efef62af63dc0207174e4aecdec72a9590bec97243631f91a69",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/027.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "b0c8558e6c3796e66a81f92f510d5a438611ebc80781424a35d96826b3432f54",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/028.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "dad1d33f856fc3968f485cd66f0adb62d73e9abc1918bbfd0639f39dbb198447",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/029.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "38f985ab6e35792f7f0d6b812f78e141d4ecf74c61b3f7ff659965b726fdef25",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/030.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "f1192f43e720c0f0c87b5f0f61adc24f4376935e1765eea2e2c864c9a3101886",
+      "abstained": false,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/031.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "094fd856689106b605741519f415d37f0ec4fdb1e9e16551e7a7ee2052f7b2b7",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/032.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "369557508af8d63df645b721012ac5a9ed2a25fe27aa713929df241ed80470bf",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/033.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "2b3aa77772e5510a72f0c145d3c09742b40ea01572c5f49a72e0270110570331",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/034.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "452c254004f7d8805b98d5ddcedd08a69dd7fcc2663c444537ecde5a6fda51dc",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/035.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "d12d758a9801286b433e93dad4c9cbe71f295b963d709fc846590d48426c940f",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/036.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "6b71d1838c7e746801aaffd2eb52bc46e9988b414b0d0d23118eeab60c3cf1c4",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/037.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "146cbae557e92c3db02ec50b70c7893f45e50f3bf90e6ccab7f07759755e5b76",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/038.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "ba2c431870c0c92906cb113f967eecd98c160083c1eb9f127f6cc6318e9ba5b2",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/039.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "208621ae8baab98d0631179c784578bb5818556149d1fa38a43fce8eee40ddf5",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/040.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "618621e7f3bd978fed4e8c9d7be9548f7057cb5ef988579a22c027d6b2da186d",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/041.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "153559733be5f391c9daf48fa8c5f6b41ee139c2cbc7a5da92ba439d955eb0f9",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/042.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "a000158a97273cb3fc772780690bd5886aef25bb74e4ef7aa5854b1d619f3135",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/043.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "b5186a2f16a7351363ba35e2ac3ad510c8939ea1168207ad6b7175c18606cb1c",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/044.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "91633aef87397b4bcef3305513e14c9ffa39a4d0a4aa40902b25fac54b6f3c99",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/045.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "f038801fe0ab5c6441e287d1fa3b4c6a6063de76b636e688d5a4758032a70f22",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/046.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "c749139c21ef26db72d820846e597826db3ad76692ef0e005538f3310f0aa440",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/047.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "25019df6e6a910fce39be6906d906bb4870f455825053b3b6c4125baf20f3824",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/048.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "db8510cc12058687079a0c558e29145d289e5fbe889eff831ed4907f61a2092e",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/049.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "603024a97f1f3592265d45e68d2b228a096dc250f0bc356066a706708c8b66c2",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/050.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "28d15adbf41dd8a7cbb714142af59160a15312a094e93ead72523fabc7a98f1a",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/051.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "4186d177abdd7e4427e5e697a70de78affb91307b171670f9031b762941c2570",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/052.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "703b301c137d8723dda5b3ac87a3fd103fcd1a8da3e896861c01f135e510f92c",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/053.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "5791f4da67d8d7c6a271965eb3071f6c67112976e165b874397ad85a8c1479e3",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/054.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "c3a3a0a745616ca5b732c4482e72c51a89633beec42025b01fa7c8d833b795a5",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/055.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "a87825df883681385c9299de8c738fd4f5b3cdec1e01f04d927692c24840f23d",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/056.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "014f4814198c0c68813783858e89e85d3d72ff67a8aa4c0153d1b84aacb09e5d",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/057.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "bfb1798d545086c436c4030970c63520a02d5a6b2a41c405e80589730658ac35",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/058.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "7906f66f55be4c6defd525f5f118924aba2502bb8f20beb70cffff7ee699e33b",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/059.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "b3a3c56c2e76f2c386bb760f84830dce93d6982660df52a89e3a56412b0ccfa2",
+      "abstained": true,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/060.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "59a0011b8790d250dc36ffa0dce2b6dbc02fe0eb02b1409eaf2e17f6e5ec3291",
+      "abstained": true,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/061.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "840c11f994aec24e052f0da0fc45a8a5e329aaf81917d4cb094644eefde4cce7",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/062.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "a6ad1a00e47dfbeb0ecc7c878fcf075ae16aa576963dab644a0abc60c7d625d6",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/063.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "66aaf9db16a3ff59450b95f800152b1cd8c94e66c6c706d1b33014f5dd167214",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/064.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "5117dea2977147a0ba051750228d21ac68f382493b57c04f5e1384df628eb3dd",
+      "abstained": false,
+      "predictedClass": "fussarium wilt",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/065.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "1916c05eeb4a54f9bb4789510eda7421bde0c541cb2b84e41550b60767d2b1d6",
+      "abstained": true,
+      "predictedClass": "curl virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/066.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "3ed68ad39ddf8113515f925035625d820b6aafd1fd33bc565ae97c198bc62dea",
+      "abstained": false,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/067.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "849682258ecb14c02586982d4428386122c74cfb188c303ad7f9190ae8099df0",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/068.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "9f0535ea1af03e3b263ea471565d5568839261db6e5cc1a6412a52b4b6fc66e5",
+      "abstained": false,
+      "predictedClass": "healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "leaf-variegation/069.jpg",
+      "sourceLabel": "Leaf Variegation",
+      "expectedModelClass": null,
+      "sha256": "4df29eda46c4751fba94b2149c9666a3bb082de5e1bf9274f7cb0700d2cce432",
+      "abstained": true,
+      "predictedClass": "bacterial blight",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    }
+  ]
+}

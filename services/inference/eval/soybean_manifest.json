@@ -1,0 +1,2460 @@
+{
+  "manifestVersion": 2,
+  "evaluationScript": "services/inference/eval/evaluate.py",
+  "evaluationScriptVersion": "1.2.0",
+  "evaluationSchemaVersion": 3,
+  "generatedAt": "2026-10-19T17:54:36+00:00",
+  "crop": "soybean",
+  "dataset": {
+    "name": "anandvermagmailcom/soybean-leaf-diseases (split test)",
+    "url": "https://huggingface.co/datasets/anandvermagmailcom/soybean-leaf-diseases",
+    "license": "No licence declared on the dataset card. Downloaded on demand by the operator for local verification and not redistributed with this project.",
+    "split": "test",
+    "heldOutFromSourceTrain": true,
+    "splitNote": "The source dataset's test split, held out from that dataset's train/validation splits. Overlap with the model's own training data (LeafNet plus the authors' field photos) is undocumented and cannot be excluded.",
+    "labelSource": "ClassLabel feature names read from the parquet file's HuggingFace metadata",
+    "overlapWarning": "The soybean model card states its own held-out photos came from its training datasets. This dataset is a separate small public set, but its provenance relative to LeafNet is not documented, so overlap cannot be excluded."
+  },
+  "model": {
+    "modelId": "ixrbhii/soybean-disease-convnext",
+    "revision": "dd564d089f8a95fa046a5a6fc4a39cb0f5bf0c26",
+    "weightsFile": "soybean_convnext/model.safetensors",
+    "checkpointSha256": "41f79f767719150bfe8e4574fd4c299fdbcfaa7a924923cb630ad055a57a6f0f",
+    "architecture": "ConvNeXt-Small (timm convnext_small.fb_in22k_ft_in1k), 6-class head",
+    "library": "timm"
+  },
+  "preprocessing": {
+    "pipeline": "resize-224-shorter-side-center-crop-224",
+    "description": "Resize(shorter side 224, bilinear) -> CenterCrop(224) -> ToTensor -> Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225]) (identical to timm.data.create_transform resolved from this model's published pretrained_cfg: input_size 224, crop_pct 1.0, crop_mode centre)",
+    "inputSize": 224
+  },
+  "thresholds": {
+    "minConfidence": 0.45,
+    "minMargin": 0.15
+  },
+  "counts": {
+    "images": 240,
+    "scoredImages": 240,
+    "excludedFromMetrics": 0,
+    "supportedImages": 180,
+    "unsupportedImages": 60,
+    "measuredClasses": 3,
+    "unmeasuredClasses": [
+      "Downy Mildew",
+      "Mosaic Virus",
+      "Septoria Brown Spot"
+    ]
+  },
+  "exclusions": {
+    "source": "services/inference/eval/exclusions.json",
+    "version": 1,
+    "note": "Declared exclusions are evaluated and content-hashed like every other image, then omitted from the measured metrics only. They remain in the JSON report and manifest with their reason. No image is deleted, relabelled, or altered.",
+    "applied": [],
+    "declaredButNotEvaluated": [],
+    "evaluatedImages": 240,
+    "scoredImages": 240,
+    "excludedImages": 0
+  },
+  "images": [
+    {
+      "path": "bacterial-blight/000.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "5efd7b2c434397e3ad3e08fb18775b54cf9172525f609c25e3f576cefcef1110",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/001.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "8614db3248fc694b38fb63908a4502b8baefe04c7ca9cc3c5ee688346bee0db8",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/002.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "32226e432caea5ce5f336ab0861aea734a4adc8c5829f2e56b19f4b93f4be0c5",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/003.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "a8e9390e7b66c8044b524f8dcd9d2f0ec8cd535ad6573af4de47e5ac939920f8",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/004.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "f6f7382996cf3f7f7d1ab1420dbac77b528a018359d8e68c37cc0dcc78a964e5",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/005.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "08260d097d0922ad52d3832e4663c9c444b6cc3e2a71ff21b4f8ca9e02b1c66b",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/006.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "264ea7d6626b428ee6e0fce122885c6b476305e9c0b56e399aa3ff03da8e6792",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/007.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "e0848bf9b80b176edd5907f087e3147fda91334725a2589b7f1bbc90833ace02",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/008.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "af11ac4a4ec23b7a5042a5271651193b6c7dbfc3d8332e7e577b598098842e31",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/009.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "b005923066f425e3b973728537ba79698fb14d4b5db103affec15074906be23f",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/010.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "4f1e7c5bc742596132bbe30bf02d0cc0550b8d60c8901a81edd589a3a65b6b64",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/011.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "ccf5fb448e7ff8dee428a8e17bebb18ac3fe753b1aa7a92197aa189b026ffa62",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/012.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "e6820388795980f23638a9e7bf9fe578ecbe166e2bf7026d954ce7938b3128b3",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/013.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "0318b14645bf9fe5b7607f5d2455a55e4999ed930a50643800935ab946c0cecf",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/014.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "510e839c15c6e7823ba247b7305b3a72618ef322c7c2a0a22bac597d328505de",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/015.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "8f32acc702cccd666033a85e6a793dd070d8d2cc595ee36edc761da547fed8b8",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/016.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "9ff52fd6a895b227bfe75e6c5e5909b526ed7aba7466fe41313a56ae6444818e",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/017.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "9230ad11d577a535ecfa30a5d4f3fa204e16848571cf53087f72426c4ee963d8",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/018.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "53afefc61d0ab731a8553be5edd5ced08e9bf72a4518efc0848a9434fe85de30",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/019.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "58e7770ed0340d6c012f604f318abe5a3c06b8e6a49d26cb23d36316aeb72fda",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/020.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "9db148dfcd3c34c60f33250b27467699302e8582ab28b9d2553d9562e0878f4d",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/021.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "7fc13156ad846b01e04a54c50ed307355f3273a9bdde2257968b35e2caca0cae",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/022.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "957840e37845896ad2f536e2e54892711cc380742c313be000bfbf31b677f4ee",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/023.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "9bd14ebcaaca5f4ddf365f956fab87f89645fb0a4be4dc737797994ca6cadb99",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/024.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "7636360d24f632db0631f61a0969dd4d6fbe6c0b3ec1e0c06149723983aafae0",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/025.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "c964bc661540e01d51e9db9c174b0d80c11032046a22a3af1767ad6e6542bc8f",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/026.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "e75e2c8fbbf7e50c1c5aaa80c2b9d274cf6d7962692ba1f01071b932c96cdf13",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/027.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "5bb2fc0133a932245c11e01c431a714440f208942b7b5bb2d7ec7564dd346fb8",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/028.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "bc88d0e4efc0bb6b0a2c0750f1234cbc18d955777557a49fe1d88b3d7f2b86b5",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/029.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "cc3c62f763966afcadd7b1c5aad320a057494d1d682121329d6d683e63ebd63a",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/030.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "20ecd43ed4381027cd81b4c0fb1e3209c7aade35d9e6bc11d7ed0528f41704ba",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/031.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "beb81906ebaf526fab0940887513b6eccea3011287d8c0b21cf06613a3f800ca",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/032.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "cbdb47a600036378a39c25ff609dc77edc1d6b730e5fd02e8327905f8951f0a7",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/033.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "c0f7babe18abe529eb1d523222bd299b128fa66fcd39a2bc636ac7a72daf3a7d",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/034.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "122d314119601720a95f2ec249197d72da0b24f2ac16c6771f2c43229927f67d",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/035.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "06bdbd3ad9ad7edde9df7741192b7ddb7b871fda1f2ee3d9c5a18412f2c7d257",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/036.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "118f2c4724e71f237c74fbfaecca278a94025a5551d8887762186d755d3c56ba",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/037.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "be873540a6a65d0f5490895e41af9afed26e011bfc30e53c1b45de207803ac4d",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/038.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "a15763bd601aa6f39073843fa38ffcf9f0470b2b33b2e861c81d9af386586674",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/039.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "31d2c6a7fb013f1c9e0ff3fbc1231a22b8b74c0229bed4a1d19523105fef92e5",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/040.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "53a9e108146f792ae3726511231de2603d7380aa0ae5206d566e8776d205643b",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/041.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "6cb16299cf24b2b0e0ade49ae9d88b796661eb268a8a590c70741e936e631e70",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/042.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "cd8fa71696a932fb5d268e3863ceba3fda39722b58365c8940469747bf024e30",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/043.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "a135f2c03015dafe816fdc3c24f036d21ffac2235d2c35381d4f5ce033f6f3dc",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/044.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "17fbb0d69109fea6bc202c0c86d5c8e95c6da5768ac1516cc127f588a7077838",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/045.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "b672f13cfa401e273be66c42bf31e88001204304c9c98509f852bcf51aad1499",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/046.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "fc67da6f890df10cdff43f980c49144652dbee5ebc02542136418223e6958e12",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/047.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "216791315b9b8984c9161d98968c1423432ef07253bcb2f305a71c4d043fd7ee",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/048.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "0f2349132ecbe69cbf4e7b3be94084ffa9447c7c7c372722261491edd4cb2093",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/049.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "6a4f411fa9df9a40e6efed079176e3ac372c80a1fbd71c41c788eceaf4ec7370",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/050.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "31412ad3565f1a30073006c3651cb094539e0609292683c6c84307500853d8a2",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/051.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "81d676a36f6b68bfb7796db53b13649abf79d59c944b2c248c541f49e75bc1be",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/052.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "1ebd969a32ba88646025e26f1a86ee166ee9f5d4c845b072801866364874fe3e",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/053.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "d42641574a12e7e4185e0fce3a268f90284aa9673dc057ba7f2874dcf2eab0a6",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/054.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "a28be1fbd0fd68f4aabd9a37dee18677bb44f1a72ac9793e602000b54a2a6806",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/055.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "5990019cde5f9caf94ecd7f9246402479b8293b75cb60cdf8739ffdcf9121ef6",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/056.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "c3f093091f97a5b09f52f2fa85ab4da362218b3eeabf52803aee7fdcae0e86ad",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/057.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "e76c0bdd53c74365bbb1ad7e61ea86ebe0f6923969cfca9112284e2fd79333e7",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/058.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "be82c91aca8d143e4cb5ab60f7102125b3a1d140cd007d679dc63888241a377b",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "bacterial-blight/059.jpg",
+      "sourceLabel": "Bacterial_blight",
+      "expectedModelClass": null,
+      "sha256": "212064a49ebe9fcbe6e43259bd1e98157df722ea1176aeb085b5c7cfcdb42b26",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/000.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "0a70261e074e6561c1846fd74bed3ec1858d2762ace261b4fadec9faedb41764",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/001.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "15130b6d238d233752f43695b999c8bd111694265fe5d019e555bcf938db148c",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/002.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "5af30e3f96f58e0bc8ebab64c848d26ebd98ef687cf3639f1c4ae874a0c3e687",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/003.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "da110078452417898123a065f9548b726e7f8fcb5d5fd5b2874046da9abaa722",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/004.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "199f8a63dc8a3c03279a1042e9f1056c0d0333f579d2aed9d7b60e7cdac08ca4",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/005.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "2fad20657ddd858bbb6c5f1c2974fe27c696e22ca83649074b02998c4d709081",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/006.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "0f9a5ead4199f4c38db0646cac4294fd12f85eba331f97929f35ce0e865b68da",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/007.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "8af6b7508361264a7204fb68bf59948aa9a87fc114432d7df21f28c865e0f2a5",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/008.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "325574711b58fa0f9724115c854692698be14f1c91920219dec821cdab7dfead",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/009.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "15562e4abd11bedfd8271de0de5cf26b931da38b8058d306c1be4a4273ad595f",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/010.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "599fd51ca29b73653f11655e50333f07896708535a653e444e24cd95d9500a95",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/011.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "4548a7c1658d49b12a58635088122dba51712697d94deeeda083a0cc31491118",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/012.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "7a0aa1312afab67b5a92e0be6ee6ebd28d752c90b67cb459c2f309ceb8c0acb6",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/013.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "7eca5749b85c5121a7b233c2e9e62a6d54d5fa7aefa0b91e1a95a5ea23c887c7",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/014.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "0648c7131ebcd8cb7e15c922149921a28c0c2739f435e03e12b88f95fb5a7cc4",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/015.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "b3336f82704104e9dc99c458fd64fe547ba1fbec659f0315a021d6b83b3eb099",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/016.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "5ba70024590330cc1e98e199215dfb3ea0c9f1f9b02fd8e68a74dcf97980a4aa",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/017.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "6551888f9939f0c05ca75feed9bf4cc621715549409f22c894000bdacdb612a1",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/018.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "83d402a27d3140146f0f304d433e1e7ae19774b54136af02375b1123680ad9f3",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/019.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "aae966b761e9a69cda13d919162bde724e6975b1867b35aac64078cc732fdce3",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/020.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "430e2e23a8508283eb7c07bd7dbb77654f43dd5b9ebdc907716fd4d6419d3e2e",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/021.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "44e5c3b4c6dbd9c0013164ccdd19a90ac41ab09e4f27034b9232c347250f1a4c",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/022.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "dfd5c195f8ab69d71a14627c2950819664a9a5ef253e297ef866bfc294acf032",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/023.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "789467aa87deb61a078c04804d50202f59bd6b46af323cfa162b8924a30ffe77",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/024.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "4eeae8f93d00d21b839b5881ab6a2bdbb97ab007cbccadc2ebeb8ded057d9cd3",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/025.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "4d30816cfd8b2a49637265632d08f10664ea7bde8674e4a02e7868984fdd22da",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/026.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "2c215742ae12fe8b7857bea33f01d0a4a903ef0d78079ed6938e23e6e7bd2880",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/027.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "c1133d65b2b4d82964591d7891427f9c9fb5bc2f33a5380d26bf15981a4e34f4",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/028.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "787208f2d3bfae43eb95258aeb4067f0d5e383c4cfc48f4d7527d4cac051252d",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/029.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "ce738cc443d3462035425f740c9c02b4384f66594db1f380c16b4e1b36d2038b",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/030.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "d4a6ca929041d753b4cfd412d930476ed8518794dcab817619edbe1ce955b5e7",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/031.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "4900d8e52e26ab4d6237737613dccbcdb4814c6dc089fb0c30497ca407c162bb",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/032.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "71e55b5d51cbf7476f73c315bc1c0043218893a27b708458273cb63d4bdf32f7",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/033.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "f7fbd3ba93f05c69669b04a2109c86db4e7d5f66cd2f60027dc5c82bb03fd3bb",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/034.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "fdfeb9f2290d13b0944cae83c2f914b544591eb4935b6a9294731effdb6e9e70",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/035.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "f008de597a940c081bdbaa84f4579ebb426a69fd690dd785928363a2870aa2a1",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/036.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "e0e64cc1e18ce6a7a8574423c5af89a3014dc225887f984cdb733a687c0d5b82",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/037.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "2b5358aeee975169eb31c89a98e147628a91be86fa090e3f8b3a5a1525d84f7f",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/038.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "d523037d9e49e11fbefa798d4755c31f49f5fdcec582afe1aefa210eb4383348",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/039.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "b8b1e4d9ed587336c07aa2af19779d59a88833434430ebdc8d14c4f4779d86ce",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/040.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "5188c425b81d5ca17b9b1cb070cf47975929cb926a5a276832f86791de7c1fb3",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/041.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "84dfa8326ca8ebdb9d8265c28b13a69b8b134d3eee97f1f9a5622f0f5ec7dbbb",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/042.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "87efdb627804369b552689792a194d886cb58888b0724ec082092d0ae0a61c45",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/043.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "6b095d4cc37a03f6c825b65e13e768b4178dce7b0a69f780fb82f12678caa389",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/044.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "a5b31e9f58f610fd9c5e0940b4d0ebf56aab7110df605e52f596a47b89c21a04",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/045.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "87afbb5870cd0ad8d16ef173a1b1ee29fbb12d2d05fbedb9b6eb2b46f2a0e7ed",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/046.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "3be8dbe0d41ad9b27b944812dc08328f3065b72525a0a2873d7299a8c35127c4",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/047.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "68cc870ac5af1bf862389203cdf788646bf0f0a4b606dd628d04857d38adbf94",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/048.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "2e17474b27067834739cb33ba1b9523dbeea236800fbbb179878a63deb73996a",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/049.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "02c4fbc2ff30b4b955165f671af58bdb662a758a4296a5c3fd819e4e8201ac3b",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/050.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "a4fcaa012b46785acca168b97d2edd60465fd3f6f51023e65885a02b65890eb2",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/051.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "86d59643a664f86a4626da1daca4de606876269bc1eb230c1d046106c8b7b195",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/052.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "56e2357ee98da266c9901f0f0245476821d3d4057c253d04bb02a13e350655fc",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/053.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "fb022b21e74722cbe48644516db3a3d9c5dee65cf2c171e35f49749fd1c67471",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/054.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "94678061d8a9a99d934025416fdd7de5305b02c445eeef446a283ef815d618b8",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/055.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "a4362fa8330374fbd79b8bc17b6677c86be3a450ab1b8a557299e480802f420b",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/056.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "20969fbe2718ccf73c8c4cda706633fcd9c8be7cc920ac5d2a320a89b8c8c87e",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/057.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "e211c09d1f2a9c2c80795a54d2aec6ce5f8c6a50ca619995d9d9928cde412754",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/058.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "526ecc14b1fc2511e961f60feabecdbb6e23e27a3f64ea64880dc546bb56be0f",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "frogeye/059.jpg",
+      "sourceLabel": "Frogeye",
+      "expectedModelClass": "Frogeye Leaf Spot",
+      "sha256": "b8b3ccf16549022780af4d27ab7572bec0559e273ab7a8c479ab716ce0bd837e",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/000.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "560be2081e7ccb0587e58798fe5734ef75f15ab358c0fd4a21ba4ab07b5cb24d",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/001.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "4d2128483b3166d39e64beec0e2007f8c1a480234f334a35912bc5bb54a51ab8",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/002.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "7d517a6a64ce0ee592bb7f3ffd3a7d0b862f11a2832ba4eeb2b2a0def40769d0",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/003.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "f31aea64095bf6803a39cd997990a2a530b95caa913249e03b878e0d12bcdb5b",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/004.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "e645742581a21bec45f0f11fe22b7985f92f9f7f11f5174b48471133ca23ab77",
+      "abstained": true,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/005.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "b71cc78a24c34ed99284043e427eb39149ff4d6662d318e1d8af8f8646fdfb40",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/006.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "1613e43e94a2c8751eb5206580764da4e170e79625594d5fc55e054bfefd5eaf",
+      "abstained": true,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/007.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "aaee0e08a95c14467be1b90ecd80e4e172a6f739211c2d9062e5217b36113a3b",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/008.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "f0039cf765cec89a74b785163e1f4d16c3e115ff2dffd55d74e28f07cb2f762a",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/009.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "46139559656e08d1fca07c0f075c322ac069b8845d69c66878d9898671a876e5",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/010.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "9556a2bd35684401855c8cea2c0907079549d87d1b15e5577e98fc19068dcfff",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/011.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "40d79a2af2cd71123881150a4407e62e2e962cc7589148dd2dc6444c27ab4ece",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/012.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "48fdb66d5f4665918801122816fcc6231c50ad32d47e13b1ca669a0feb5a12f4",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/013.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "8a297193151c6084d5e60ef8989a08474073b8d0d9a7097966dc8dfc2cbe6ed2",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/014.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "69f68084c1bce0c9227d51dc19b679ac042c1289c120f8083f340b988ba1b71b",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/015.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "f59de19d6cfde76ff737a1252953f45428958b9a0cc8ef487f84d8ed060744d2",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/016.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "212b7c05cf7e4c316f807cce3015a041269dc12f4e42169dcd0a83824bf6ae4c",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/017.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "800cf2b83a1b52309f46d3e0da5a9cba85e808d1de0aa960519b3b81bcc1c74b",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/018.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "2409e36c0614c7c4258dd5f7786bc90fdb6c8f3df1f9d5a0fadc4ff1acadea63",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/019.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "de1e25268eb35b6e9f05d068a8c95a904c58655178d47a4f0d91ba8dc127bc66",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/020.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "46ec9d3645d868327f781b848bd24d4e5fd39a2b665af9190af711c8574d7569",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/021.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "595477859c28e5c98699c37a93c5f5b7f065a67c60c803eeadd76bbd24aeb8ac",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/022.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "b26a64a36df11ec8091490f4af710e045ae21c87f74bf3a577e99f7596ce7a41",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/023.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "7b8b006a7769ca0147c9bcd116514d4480d92634ca08cb2afdf7490f04dc69ca",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/024.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "cc05f3dbafe5be351f557bf980f322013860cd483bf991048af6092082316c69",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/025.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "9d734cf33b15d18e71136c58a7d9cb0f7f968a2bb82d85488116a6e085dd6b89",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/026.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "2369bc38795639ed54a528a354cc44e46a0c6894cb0db229524f8d54e5e9650f",
+      "abstained": false,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/027.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "3753e9c8759746102c300df54a05a6ded3976879336f36abf82c20edc14e88a0",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/028.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "80e67a1afe81656f739adcb2c75f90056a215eb613a04a3bf917fa943e0bdff5",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/029.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "d4219ba4d244493629489a59ec39d53410332402a4c78058725fce4be94ec317",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/030.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "457788f122b441aeafc39bbf976b9c0cec61124dacf0b7393070440d09356075",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/031.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "262bdba8fd18a183a3a8b835c7aa09eebab5df07c03bb4477f0fac0d4dd0a2b6",
+      "abstained": true,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/032.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "06c0c0cdd00ca83d75b41eb4f09e87cee9e99fbb57cc6b286ec5893fd9379315",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/033.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "a8cda1899de600f9fb4bb0726b8d47d3df3b26e5d59322bcda2d0f6e279110b7",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/034.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "23e44aace95d4000cd44b5bdcf19350a8130fb79c34bb387a7e3bcb07118fd81",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/035.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "8692090fe2e370c81ff4b720782797e3cef2b512bc5441f67be2289a27cbeb21",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/036.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "3b14ebcf80bf0dc59f48587a63b3bf756cf2af2a2d5db4f42905aa18380b21d1",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/037.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "8f0822565d79bbe9397ac110e38a5bf620c0ff90f1373d5a4cec423df1c83143",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/038.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "0318c2d0b61b1f510a27d433acc28f25338d66a0861282a9a6058c5521ba738b",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/039.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "c0ad467c82aa5376f3abe18f6f398211e679fde2f5e381574925f78b9cdc96bf",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/040.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "901988364b71ce4f1c019ade840e3befabee94c7d43bac34fe72a19bfa5b4fe2",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/041.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "76c884ce2b126762666c7499c8cab268dd5c2dd9fc96db02b0d9dab81c97d0e6",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/042.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "98319061f310255af68d2aa33b1a0ed9d96e9631a4f194cc4c0ac630503a4069",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/043.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "69e42a359975473b73d3cc3f029cf81d495e5f03ad2062d0d7834441450d1606",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/044.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "3c6af3048ba6643b7e8f0daca8887891ef536688f91ceb28adb145d2538f260b",
+      "abstained": true,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/045.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "3f05a134c5220b2564dc143bf973475e0536e394ec25d8c7cd7a3c002114e847",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/046.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "14544d16de45031e7fab81cb5b8ae0c46116226a42be37103ebb0a5788396ebb",
+      "abstained": true,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/047.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "20bf63312638072bf22a6b6f0d810a7423f22b0963c974c5b1d50925cadd5cc4",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/048.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "056be90ea49b0b02d22f256da7da8d29c5d0a5fbd5d57e935408a57ab4a0db4b",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/049.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "6f633a953c38b1ebcb2185eaf985839fdfbdc85a8b192d1675f1cedc04e30bfa",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/050.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "1c42e6b493f5b713ac65a91c11bafad635c62cf417003d95b413c711f6ed8a55",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/051.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "17daebf8a67fa8b482af468f3318284fdcd9963f901f09913719a042041be00f",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/052.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "7775c1e7b1fa80cbecf5932f5771514a7176f58655d65be4eb9d9c3c565c523c",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/053.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "321d40f5efe58133262642fda4566931dff2af0188851c9d4b224d314522be7e",
+      "abstained": false,
+      "predictedClass": "Downy Mildew",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/054.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "4124260dd74cb1d0db4d8662e85ad533bd359c7f8170e730f2599ef586b38d00",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/055.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "cdb30a680e145e88795fc86e95b63ec8c7b9a4aae6cb998af140fd58e22fd1a9",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/056.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "48c3a13af501dc54debf96db2e92ff434c1e7ed72aa532f305930afc8c7d1af0",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/057.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "92f25e0e7a2f5307f2f4951da73cd4fd3d38e8f1289319ed64d1232d47161dbd",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/058.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "4686e897558f0bfe219847362ec84fdfa3c9fbfac34bdd3ec6e339e3b0eb417a",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "healthy/059.jpg",
+      "sourceLabel": "Healthy",
+      "expectedModelClass": "Healthy",
+      "sha256": "c755406014dc829a03cc7dad2fce86211b7ad52d819b78c169d416e2c71b3ea8",
+      "abstained": false,
+      "predictedClass": "Healthy",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/000.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "1615aa70f22ba06c6f1bb48d64edc9264461ce096863c21d3add34eac935b68e",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/001.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "e002cdb3766e4a6ed5c519028e4a0cb52a64b500d54ec402597aa3921b987265",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/002.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "bbc33d3bcfd7b69bd4dae01ccfcc24b4e53b758d13bbd13135d3b0d27e5aacd1",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/003.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "ee05fb9e9b28afa414975c1f55cd9fd9e1e7be3797af1a8b6cdb69d17e7f9d30",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/004.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "9823429dab5e9f46d806bf0bf5c27b0f46e6f1350e309fb38ed7ce26c323a724",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/005.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "5a8d96b438dffcfb6349f5aed213c983c6ff0cb11631b8b48300272519e589ac",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/006.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "3bfceb6d392f5d8ffb6e3030fb382b89aa988c187ba37c148a6e1efa7f15e6b5",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/007.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "cdd9331a2e832e3ac9a16434a57273fa26836d955d9dd5897a409887968cbacb",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/008.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "b1cf02f7f9c8ccf82278219c9d6b2c5e897e27b8015156f6c00b1a92f4e1ec3a",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/009.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "60c48c68f05d2fa854d9b5e05f9c4844bd4468075bdcf0fd745bad74de3526dd",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/010.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "672a6c3cd4a09b8531ac1f5349fca3dac9dc49b38ea0d99a0170593a09a1e6bf",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/011.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "bdf9d0e3369aacd2c201ad0360ea92712251848d095b0705a18bc320767275cc",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/012.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "c730a298deb340b24c18eac69275c477c88f00ddea477553d5ebe77b0e2f55e5",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/013.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "1be24bbf4b9cccc41a26d287afbb783107d8a9a5d7b063bfdc2bd7d0a6ea1243",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/014.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "9c1e8d65164dad3fb9ae92b6a0a50a8b874f3952ad52f9c304dc812de362a129",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/015.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "b62261de999461147a82c3dd02539ffd5d1eee00a0290eeb825993b35062809e",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/016.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "8bf3e1fb0234049919be72c35411474fb8a8b4741e0d3891b7d8dff4260a0cf6",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/017.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "50d938df40d297ef69d91981debd1f47b9c74d3d9ead8de84bac021b1801d9e9",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/018.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "1e5cff3c102c029c6c3912c0c46d6fe49049658ae456e646ae32a6cd155d1c6e",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/019.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "958efe492655e707a97b6b2970585507814f276ae600dbb08840d81e171164f3",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/020.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "7fdd9e6e45edd1783fc0889afdb9c85fa0d92f49a12c61f30734851f68739e63",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/021.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "b9970501d3268dd1f22f67fcac994c5b2edc4310bc2ea9cc1af75803d07f3947",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/022.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "a96bfe48254c9578a16130522837aebb3d55fd4349ad35fb07765e5d3efd44d2",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/023.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "9da7f63138017f4353fa9b7f586670e70043aedf70bd3c3961dad6e14ec351b0",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/024.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "59aa000b921583559d7c732f27704078156f482007fc2f13fbd412f76d96bb5c",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/025.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "86971207d45c8c0f3f7fecb364b4ae57d411c88889fe10d10d0284997e23bdb8",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/026.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "d0cbd359dba889bb5ec33b6a7e9964009a355219b86e3c96466143f67fdfae24",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/027.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "68a3bec047c160ed9d30987e88d905a6999e01cfa93e54f508e4210a8e98660f",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/028.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "f6bac49e142d67b1792a2f6f30e0b2ccb9590d1065fb899158cf09dde4ac97cd",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/029.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "a69500c0b05f8661fb657f7f989a1d8f4ba09564d4bcd05ab9865f741ca4fa08",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/030.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "25d862bc9309749b7a4be4a7b7e1afad6c05fd6d1fb01f562dea268de1cf3119",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/031.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "219bafa4d93f7be3e7892e9876f0692f2293b5a920a2c6920824f85c7e895015",
+      "abstained": true,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/032.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "f1fd526f50a498087b4e1c5fd3e2b929ca3b717cdab7c067cce6de7f65223695",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/033.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "514e952d104605881763ed436dec6fa16967979b90487a26e0df8173073ac995",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/034.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "9d9c117eb38eca9b5e12f6f9fbb65acd596d424b225d81c1508914d82ff2d7c7",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/035.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "5d9f68b4057c0133b8dcef4f2b30074ec19f23a96f61c9619ce02345afd4f632",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/036.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "074f13edf376436febae45d396c356997acbb71664c51ed3910662c061737ffb",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/037.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "7247dface07c01e5fa60c557e07beccb72b8360bb4e39d898b682316c8dd4c86",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/038.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "08d5688367d972be114c780b14d30263a137561ebac9d39acae5f68e2b6ad200",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/039.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "141fa3b9b5dff033c53f70fb6ef24ea2507721d390293f7f29d56bcd6de747b1",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/040.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "321779d973c48102b1292755e71aeb6de4ec47971f883844e8a0c789919600e6",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/041.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "8e96020ec166ec68efb46804e9efc7c4b11e22e8773fe688687a4d8879cfe002",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/042.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "92023d05e760a117473757eb437df496db51ede9129a68e4da5427509ccd8992",
+      "abstained": true,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/043.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "1ea5bd0bd116daf68ab1a9251794d80fec91e4f61f2fa910c09574b980507274",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/044.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "0c7916393995f882a9e024d02ee27de448332cfdc9c8c85a36a79653401e5ad3",
+      "abstained": true,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/045.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "cf612d80494f12ebfdd274ca95600070e29a342c6f46216734528832394358b1",
+      "abstained": true,
+      "predictedClass": "Frogeye Leaf Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/046.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "d2f514a227c9a38987a5ee3ab11320ced55ec762b35ed66f0efb1f11f53aa656",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/047.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "8975e91d921f4e2ef423d20646801e0bbda89d10109c470eac73cf9fa15c5705",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/048.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "0cfd459217a6c2d83547b4b7c95a2a60f2181fbd4fbd209e9fd4da9b704c116a",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/049.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "cf4f34305eedfec53baa84874f02a0d05ed236336801745bdf880681360d6ebd",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/050.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "b6c0392aab2579f73415183d5c9ea37fac17b18d956451a68e39b88b28f9d6e3",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/051.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "643f8ab9a7fdd79ee407f16b520c3b22ac59ef1ca08756e4b221f7669a095019",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/052.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "d7eb34e38a976338f25149bbb90f33e726489c1d2b25a6a0f49a195efe599591",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/053.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "692f1daa5a05fc7225356032b6e548a4927fce4f120d31328e65b834acafd5c1",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/054.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "cf714e6f6bb399868eb90490f10f8eb22f27ef35429e321393deb25f70e9771b",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/055.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "e760d7ecba358a001cdeb1b4bd54ccf8431f9ad709c40ac4475b33752adcd21b",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/056.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "dacacb4d5537ae237fc8ec10cdf6581cb967c7041b08eedfdb90dc2e6ec303cb",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/057.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "b553bc918b7e8c47ca4a828503cd523bf9c1bb04734229102c244fbbb1e377a2",
+      "abstained": false,
+      "predictedClass": "Septoria Brown Spot",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/058.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "f1205226713de434e186699dcd86458ffff54c9e86a1168afa8baf8187668802",
+      "abstained": false,
+      "predictedClass": "Mosaic Virus",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    },
+    {
+      "path": "soyabean-rust/059.jpg",
+      "sourceLabel": "Soyabean_rust",
+      "expectedModelClass": "Rust",
+      "sha256": "91ee605340582daeadcee67c96727a3f1aa5bf588ad71ea5402e0695188dac2f",
+      "abstained": false,
+      "predictedClass": "Rust",
+      "excludedFromMetrics": false,
+      "exclusionReason": null
+    }
+  ]
+}
