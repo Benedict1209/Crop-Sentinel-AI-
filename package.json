@@ -1,0 +1,36 @@
+{
+  "name": "cropsentinel-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CropSentinel AI - crop health intelligence prototype for SIH 2026 (Team Code Bites, PS 26131). Cotton and soybean for Maharashtra, with genuine trained image classifiers behind a local inference service.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "inference:fetch": "python services/inference/fetch_models.py",
+    "inference:serve": "python -m uvicorn cropsentinel_inference.app:app --host 127.0.0.1 --port 8000 --app-dir services/inference",
+    "inference:test": "python -m pytest services/inference/tests -q",
+    "inference:eval": "python services/inference/eval/evaluate.py"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "recharts": "^2.12.7",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "jsdom": "^30.1.3",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.9"
+  }
+}

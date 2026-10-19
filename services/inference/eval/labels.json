@@ -1,0 +1,69 @@
+{
+  "_comment": [
+    "Label map for eval/evaluate.py. A directory name in the evaluation set must",
+    "appear here or the evaluation refuses to run: labels are never guessed.",
+    "'modelClass' is the exact class name the registered model emits. When it is",
+    "null the directory holds a condition this model cannot name, and those images",
+    "are reported as an out-of-distribution probe (abstention behaviour) rather",
+    "than as accuracy."
+  ],
+  "cotton": {
+    "dataset": "Project-AgML/cotton_leaf_disease_classification_bangladesh_2 (config raw, split train)",
+    "datasetUrl": "https://huggingface.co/datasets/Project-AgML/cotton_leaf_disease_classification_bangladesh_2",
+    "license": "CC-BY-4.0",
+    "labelSource": "ClassLabel feature names read from the parquet file's HuggingFace metadata",
+    "classNames": [
+      "Bacterial Blight",
+      "Curl Virus",
+      "Healthy Leaf",
+      "Herbicide Growth Damage",
+      "Leaf Hopper Jassids",
+      "Leaf Redding",
+      "Leaf Variegation"
+    ],
+    "overlapWarning": "This dataset's provenance relative to the cotton model's (unnamed) training data is unknown. Treat these numbers as a sanity check, not as field performance.",
+    "classes": {
+      "bacterial-blight": { "modelClass": "bacterial blight", "sourceClass": "Bacterial Blight" },
+      "curl-virus": { "modelClass": "curl virus", "sourceClass": "Curl Virus" },
+      "healthy-leaf": { "modelClass": "healthy", "sourceClass": "Healthy Leaf" },
+      "herbicide-growth-damage": {
+        "modelClass": null,
+        "sourceClass": "Herbicide Growth Damage",
+        "note": "Not a class of the cotton model; used to probe whether unsupported conditions are reported with false confidence."
+      },
+      "leaf-hopper-jassids": {
+        "modelClass": null,
+        "sourceClass": "Leaf Hopper Jassids",
+        "note": "A pest, not a class of this model. The model must never be presented as detecting pests."
+      },
+      "leaf-redding": {
+        "modelClass": null,
+        "sourceClass": "Leaf Redding",
+        "note": "A physiological/nutritional condition, not a class of this model."
+      },
+      "leaf-variegation": {
+        "modelClass": null,
+        "sourceClass": "Leaf Variegation",
+        "note": "Not a class of this model."
+      }
+    }
+  },
+  "soybean": {
+    "dataset": "anandvermagmailcom/soybean-leaf-diseases (split test)",
+    "datasetUrl": "https://huggingface.co/datasets/anandvermagmailcom/soybean-leaf-diseases",
+    "license": "No licence declared on the dataset card. Downloaded on demand by the operator for local verification and not redistributed with this project.",
+    "labelSource": "ClassLabel feature names read from the parquet file's HuggingFace metadata",
+    "classNames": ["Bacterial_blight", "Frogeye", "Healthy", "Soyabean_rust"],
+    "overlapWarning": "The soybean model card states its own held-out photos came from its training datasets. This dataset is a separate small public set, but its provenance relative to LeafNet is not documented, so overlap cannot be excluded.",
+    "classes": {
+      "frogeye": { "modelClass": "Frogeye Leaf Spot", "sourceClass": "Frogeye" },
+      "healthy": { "modelClass": "Healthy", "sourceClass": "Healthy" },
+      "soyabean-rust": { "modelClass": "Rust", "sourceClass": "Soyabean_rust" },
+      "bacterial-blight": {
+        "modelClass": null,
+        "sourceClass": "Bacterial_blight",
+        "note": "The soybean model has no bacterial-disease class; used to probe false confidence on unsupported conditions."
+      }
+    }
+  }
+}

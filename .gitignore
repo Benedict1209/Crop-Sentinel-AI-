@@ -1,0 +1,27 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Local run artefacts
+dev.log
+dev.pid
+*.log
+.scratch/
+
+# Model weights are fetched, never committed: ~183 MB, pinned by SHA-256 in
+# services/inference/cropsentinel_inference/registry.py and downloaded by
+# services/inference/fetch_models.py. Their licences are recorded in that file.
+services/inference/weights/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
