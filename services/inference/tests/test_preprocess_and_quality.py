@@ -202,3 +202,69 @@ def test_a_greyscale_scene_does_not_look_like_foliage():
     grey.save(buffer, format="PNG")
     report = q.assess(pp.decode_image(buffer.getvalue()), 1024)
     assert "image-no-foliage-detected" in report.abstain_reasons
+
+
+# ------------------------------------------------- quality-detail wording (F-02) ---
+#
+# The detail text must agree with the check result: a passing gate must not read
+# like a failure, and a failing gate must name the correct comparison direction.
+
+
+def _named_check(report, name):
+    matches = [c for c in report.checks if c.name == name]
+    assert matches, f"no quality check named {name!r}"
+    return matches[0]
+
+
+def test_passing_focus_detail_does_not_read_as_a_failure():
+    report = q.assess(pp.decode_image(leaf_image()), 1024)
+    focus = _named_check(report, "focus")
+    assert focus.ok
+    assert focus.measured >= q.MIN_LAPLACIAN_VARIANCE
+    assert "below" not in focus.detail
+    assert f"{q.MIN_LAPLACIAN_VARIANCE:.0f}" in focus.detail
+
+
+def test_failing_focus_detail_states_the_below_threshold_comparison():
+    report = q.assess(pp.decode_image(leaf_image(blur=8.0)), 1024)
+    focus = _named_check(report, "focus")
+    assert not focus.ok
+    assert focus.measured < q.MIN_LAPLACIAN_VARIANCE
+    assert "below" in focus.detail
+    assert f"{q.MIN_LAPLACIAN_VARIANCE:.0f}" in focus.detail
+
+
+def test_passing_model_input_detail_does_not_claim_upscaling():
+    report = q.assess(pp.decode_image(leaf_image(size=512)), 1024)
+    size = _named_check(report, "model-input-size")
+    assert size.ok
+    assert "below" not in size.detail
+    assert "upscaled" not in size.detail
+
+
+def test_failing_model_input_detail_claims_upscaling():
+    small = Image.open(io.BytesIO(leaf_image())).resize((160, 160))
+    buffer = io.BytesIO()
+    small.save(buffer, format="PNG")
+    report = q.assess(pp.decode_image(buffer.getvalue()), 512)
+    size = _named_check(report, "model-input-size")
+    assert not size.ok
+    assert "below" in size.detail
+    assert "upscaled" in size.detail
+
+
+def test_passing_foliage_detail_does_not_say_only():
+    report = q.assess(pp.decode_image(leaf_image()), 1024)
+    foliage = _named_check(report, "foliage-present")
+    assert foliage.ok
+    assert "only" not in foliage.detail
+
+
+def test_failing_foliage_detail_says_only():
+    grey = Image.new("RGB", (400, 400), (128, 128, 128))
+    buffer = io.BytesIO()
+    grey.save(buffer, format="PNG")
+    report = q.assess(pp.decode_image(buffer.getvalue()), 1024)
+    foliage = _named_check(report, "foliage-present")
+    assert not foliage.ok
+    assert "only" in foliage.detail

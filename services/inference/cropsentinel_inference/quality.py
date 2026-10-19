@@ -151,14 +151,21 @@ def assess(image: Image.Image, data_len: int) -> QualityReport:
             reason_code="image-too-small",
         )
     )
+    if side >= WARN_SIDE_PX:
+        size_detail = (
+            f"shortest side {side}px meets the {WARN_SIDE_PX}px model input; "
+            "no upscaling needed"
+        )
+    else:
+        size_detail = (
+            f"shortest side {side}px is below the {WARN_SIDE_PX}px model input; "
+            "the photo is upscaled before inference"
+        )
     report.checks.append(
         Check(
             name="model-input-size",
             ok=side >= WARN_SIDE_PX,
-            detail=(
-                f"shortest side {side}px is below the {WARN_SIDE_PX}px model input; "
-                "the photo is upscaled before inference"
-            ),
+            detail=size_detail,
             measured=side,
             threshold=WARN_SIDE_PX,
             reason_code="image-below-model-input",
@@ -202,14 +209,21 @@ def assess(image: Image.Image, data_len: int) -> QualityReport:
     # no detail to measure and would otherwise pass as "sharp".
     lap = _laplacian_variance(gray) if exposure_ok else 0.0
     report.laplacian_variance = round(lap, 2)
+    if lap >= MIN_LAPLACIAN_VARIANCE:
+        focus_detail = (
+            f"Laplacian variance {lap:.1f} meets the {MIN_LAPLACIAN_VARIANCE:.0f} "
+            "sharpness threshold"
+        )
+    else:
+        focus_detail = (
+            f"Laplacian variance {lap:.1f} is below the {MIN_LAPLACIAN_VARIANCE:.0f} "
+            "sharpness threshold"
+        )
     report.checks.append(
         Check(
             name="focus",
             ok=lap >= MIN_LAPLACIAN_VARIANCE,
-            detail=(
-                f"Laplacian variance {lap:.1f} below the {MIN_LAPLACIAN_VARIANCE:.0f} "
-                "sharpness threshold"
-            ),
+            detail=focus_detail,
             measured=round(lap, 2),
             threshold=MIN_LAPLACIAN_VARIANCE,
             reason_code="image-blurry",
@@ -218,14 +232,21 @@ def assess(image: Image.Image, data_len: int) -> QualityReport:
 
     foliage = _foliage_fraction(arr.astype(np.uint8))
     report.foliage_fraction = round(foliage, 3)
+    if foliage >= MIN_FOLIAGE_FRACTION:
+        foliage_detail = (
+            f"{foliage * 100:.1f}% of pixels look like plant material "
+            f"(minimum {MIN_FOLIAGE_FRACTION * 100:.0f}%)"
+        )
+    else:
+        foliage_detail = (
+            f"only {foliage * 100:.1f}% of pixels look like plant material "
+            f"(minimum {MIN_FOLIAGE_FRACTION * 100:.0f}%)"
+        )
     report.checks.append(
         Check(
             name="foliage-present",
             ok=foliage >= MIN_FOLIAGE_FRACTION,
-            detail=(
-                f"only {foliage * 100:.1f}% of pixels look like plant material "
-                f"(minimum {MIN_FOLIAGE_FRACTION * 100:.0f}%)"
-            ),
+            detail=foliage_detail,
             measured=round(foliage, 3),
             threshold=MIN_FOLIAGE_FRACTION,
             reason_code="image-no-foliage-detected",
