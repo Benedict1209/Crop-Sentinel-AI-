@@ -44,7 +44,7 @@ provenance: [services/inference/README.md](services/inference/README.md).
 npm run typecheck            # tsc --noEmit
 npm run build                # tsc --noEmit && vite build → dist/
 npm run preview              # serve the production build
-npm run test                 # 45 front-end tests (vitest)
+npm run test                 # 49 front-end tests (vitest)
 npm run inference:serve      # start the model service
 npm run inference:fetch      # download the pinned model weights
 npm run inference:test       # 46 service tests (pytest)
@@ -79,7 +79,7 @@ fields is exactly the kind of silent inconsistency this prototype must not have.
 | Farm & plot CRUD | **Implemented** | Create, read, update, delete with cascade to scans, traps, cases, follow-ups |
 | Reports, CSV export, print layout | **Implemented** | CSV is generated locally; `@media print` stylesheet hides navigation |
 | Persistence | **Implemented** | `localStorage` via zustand `persist` |
-| Automated tests | **Implemented** | 45 front-end (vitest) + 46 service (pytest) |
+| Automated tests | **Implemented** | 49 front-end (vitest) + 46 service (pytest) |
 | Image-based trap counting | **Not implemented** | Data model carries an optional `cvCount` field as the integration point |
 
 ## 3. The trained models, and how a prediction becomes a screening result
@@ -225,7 +225,7 @@ isolates map maths so a real boundary can replace the schematic base.
 |---|---|
 | `npx tsc --noEmit` | **exit 0** |
 | `npx vite build` | **exit 0** (`dist/` 18.3 kB CSS + 971 kB JS) |
-| `npm test` (vitest) | **45 passed** |
+| `npm test` (vitest) | **49 passed** |
 | `python -m pytest services/inference/tests` | **46 passed** |
 | `python services/inference/eval/evaluate.py` | **produced `eval/RESULTS.md`** (210 cotton + 180 soybean measured) |
 
